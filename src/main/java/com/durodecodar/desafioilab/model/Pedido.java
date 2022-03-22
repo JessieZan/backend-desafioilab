@@ -31,31 +31,45 @@ public class Pedido {
 	@Column(name = "status", nullable = false, length = 10)
 	private String status;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_entregador")
-//	@JsonIgnoreProperties("listaDePedidos")
-//	private Entregador entregador;
+	@ManyToOne
+	@JoinColumn(name = "id_entregador")
+	@JsonIgnoreProperties("listaDePedidos")
+	private Entregador entregador;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	@JsonIgnoreProperties("listaDePedidosCliente")
 	private Cliente cliente;
 
-
 	public Pedido() {
-		super();
+		
 	}
 	
-
-
-//	public Pedido(Timestamp dataCriacao, Integer valorTotal, String status) {
-//		super();
-//		this.dataCriacao = dataCriacao;
-//		this.valorTotal = valorTotal;
-//		this.status = status;
-//	}
-
-
+	public Pedido(
+			Integer id, Timestamp dataCriacao, 
+			Integer valorTotal, String status, 
+			Integer numeroEnt , String nomeEnt, 
+			String emailEnt, String telefoneEnt, 
+			String senhaEnt, boolean emEntrega,
+			Integer numeroCli, String nomeCli, String senhaCli
+			) {
+		super();
+		this.id = id;
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+		this.entregador = new Entregador();
+		this.entregador.setId(numeroEnt);
+		this.entregador.setNome(nomeEnt);
+		this.entregador.setEmail(emailEnt);
+		this.entregador.setTelefone(telefoneEnt);
+		this.entregador.setSenha(senhaEnt);
+		this.entregador.setEmEntrega(emEntrega);
+		this.cliente = new Cliente();
+		this.cliente.setId(numeroCli);
+		this.cliente.setNome(nomeCli);
+		this.cliente.setSenha(senhaCli);
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -97,14 +111,13 @@ public class Pedido {
 		this.status = status;
 	}
 
-//	public Entregador getEntregador() {
-//		return entregador;
-//	}
-//
-//	public void setEntregador(Entregador entregador) {
-//		this.entregador = entregador;
-//	}
+	public Entregador getEntregador() {
+		return entregador;
+	}
 
-	
+	public void setEntregador(Entregador entregador) {
+		this.entregador = entregador;
+	}
+
 	
 }

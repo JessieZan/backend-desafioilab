@@ -36,21 +36,21 @@ public class Entregador {
 	@Column(name = "em_entrega")
 	private boolean emEntrega;
 	
-//	@OneToMany(mappedBy = "entregador")
-//	@JsonIgnoreProperties("entregador")
-//	private List<Pedido> listaDePedidos;
+	@OneToMany(mappedBy = "entregador")
+	@JsonIgnoreProperties("entregador")
+	private List<Pedido> listaDePedidos;
 	
-//	public Entregador() {
-//		super();
-//	}
+	public Entregador() {
+		super();
+	}
 	
-//	public List<Pedido> getListaDePedidos() {
-//		return listaDePedidos;
-//	}
-//
-//	public void setListaDePedidos(List<Pedido> listaDePedidos) {
-//		this.listaDePedidos = listaDePedidos;
-//	}
+	public List<Pedido> getListaDePedidos() {
+		return listaDePedidos;
+	}
+
+	public void setListaDePedidos(List<Pedido> listaDePedidos) {
+		this.listaDePedidos = listaDePedidos;
+	}
 	
 	public Integer getId() {
 			return id;
