@@ -18,7 +18,9 @@ public class PedidoController {
 		
 		@GetMapping("/pedidos/emAberto")
 		public List<Pedido> recuperarTodos(){
+
 			return (List<Pedido>)dao.listarPedidosEmAberto();
+
 		}
 		
 		

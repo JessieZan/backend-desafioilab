@@ -35,17 +35,19 @@ public class Cliente {
 		return id;
 	}
 	
-//	public Cliente() {
-//		super();
-//	}
-//
-//
-//	public Cliente(Integer id, String nome, String senha) {
-//		super();
-//		this.id = id;
-//		this.nome = nome;
-//		this.senha = senha;
-//	}
+
+	public Cliente() {
+		super();
+	}
+
+
+	public Cliente(Integer id, String nome, String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.senha = senha;
+	}
+
 
 	public void setId(Integer id) {
 		this.id = id;

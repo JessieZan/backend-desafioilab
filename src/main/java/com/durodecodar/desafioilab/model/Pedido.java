@@ -62,15 +62,22 @@ public class Pedido {
 		this.entregador.setTelefone(telefoneEnt);
 		this.entregador.setSenha(senhaEnt);
 		this.entregador.setEmEntrega(emEntrega);
+
+
 	}
 
 	public Cliente getCliente() {
 		return cliente;
+
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+//	public Cliente getCliente() {
+//		return cliente;
+//	}
+//
+//	public void setCliente(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -114,3 +121,4 @@ public class Pedido {
 
 	
 }
+
