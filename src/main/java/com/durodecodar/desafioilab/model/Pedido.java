@@ -33,6 +33,7 @@ public class Pedido {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_entregador")
+	@JsonIgnoreProperties("listaDePedidos")
 	private Entregador entregador;
 //	
 	@ManyToOne
