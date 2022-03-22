@@ -30,21 +30,4 @@ public class EntregadorServiceImpl implements IEntregadorService{
 		return dao.recuperarPeloId(id);
 	}
 	
-//	@Override
-//	public List<EntregadorDTO> recuperarTodos() {
-//		List<EntregadorDTO> lista = new ArrayList<EntregadorDTO>();
-//		for (Entregador e: dao.findAll()) {
-//			lista.add(new EntregadorDTO(e));
-//		}		
-//		return lista;
-//	}
-//
-//	@Override
-//	public EntregadorDTO recuperarPeloId(Integer id) {
-//		Entregador res = dao.findById(id).orElse(null);
-//		if (res != null) {
-//			return EntregadorDTO.fromEntregador(res);
-//		}
-//		return null;
-//	}
 }

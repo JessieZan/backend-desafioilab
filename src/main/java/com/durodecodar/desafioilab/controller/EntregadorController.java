@@ -16,22 +16,6 @@ import com.durodecodar.desafioilab.services.IEntregadorService;
 @CrossOrigin("*")
 public class EntregadorController {
 
-//	@Autowired
-//	private EntregadorDAO dao;
-//
-//	@GetMapping("/entregadores")
-//	public List<EntregadorDTO> recuperarTodos() {
-//		 return (List<EntregadorDTO>) dao.recuperarTodos();
-//	}
-//	
-//	@GetMapping("/entregadores/{id}")
-//	public ResponseEntity<?> recuperarPeloId(@PathVariable Integer id){
-//		EntregadorDTO res = dao.recuperarPeloId(id);
-//		if (res != null) {
-//			return ResponseEntity.ok(res);
-//		}
-//		return ResponseEntity.notFound().build();
-//	}
 	@Autowired
 	private IEntregadorService service;
 	
