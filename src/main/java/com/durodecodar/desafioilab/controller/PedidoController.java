@@ -17,8 +17,6 @@ public class PedidoController {
 		
 		@GetMapping("/pedidos")
 		public List<Pedido> recuperarTodos(){
-			List<Pedido> lista;
-			lista = (List<Pedido>) dao.findAll();
-			return lista;
+			return (List<Pedido>)dao.listarTodosPedidos();
 		}
 }
