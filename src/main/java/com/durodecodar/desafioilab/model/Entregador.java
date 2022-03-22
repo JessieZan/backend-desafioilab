@@ -40,6 +40,23 @@ public class Entregador {
 	@JsonIgnoreProperties("entregador")
 	private List<Pedido> listaDePedidos;
 	
+	public Entregador() {
+		super();
+	}
+	
+	public Entregador(Integer id, String nome, String email, String telefone, String senha, boolean emEntrega,
+			List<Pedido> listaDePedidos) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.senha = senha;
+		this.emEntrega = emEntrega;
+		this.listaDePedidos = listaDePedidos;
+	}
+
+
 	public List<Pedido> getListaDePedidos() {
 		return listaDePedidos;
 	}
