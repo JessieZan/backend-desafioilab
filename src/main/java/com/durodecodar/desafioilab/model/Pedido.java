@@ -49,8 +49,7 @@ public class Pedido {
 			Integer valorTotal, String status, 
 			Integer numeroEnt , String nomeEnt, 
 			String emailEnt, String telefoneEnt, 
-			String senhaEnt, boolean emEntrega
-			) {
+			String senhaEnt, boolean emEntrega ) {
 		super();
 		this.id = id;
 		this.dataCriacao = dataCriacao;
@@ -63,19 +62,15 @@ public class Pedido {
 		this.entregador.setTelefone(telefoneEnt);
 		this.entregador.setSenha(senhaEnt);
 		this.entregador.setEmEntrega(emEntrega);
-//		this.cliente = new Cliente();
-//		this.cliente.setId(numeroCli);
-//		this.cliente.setNome(nomeCli);
-//		this.cliente.setSenha(senhaCli);
 	}
 
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	public Integer getId() {
 		return id;
