@@ -35,48 +35,47 @@ public class Pedido {
 	@JoinColumn(name = "id_entregador")
 	@JsonIgnoreProperties("listaDePedidos")
 	private Entregador entregador;
-//	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-//	public Pedido() {
-//		
-//	}
-//	
-//	public Pedido(
-//			Integer id, Timestamp dataCriacao, 
-//			Integer valorTotal, String status, 
-//			Integer numeroEnt , String nomeEnt, 
-//			String emailEnt, String telefoneEnt, 
-//			String senhaEnt, boolean emEntrega,
-//			Integer numeroCli, String nomeCli, String senhaCli
-//			) {
-//		super();
-//		this.id = id;
-//		this.dataCriacao = dataCriacao;
-//		this.valorTotal = valorTotal;
-//		this.status = status;
-//		this.entregador = new Entregador();
-//		this.entregador.setId(numeroEnt);
-//		this.entregador.setNome(nomeEnt);
-//		this.entregador.setEmail(emailEnt);
-//		this.entregador.setTelefone(telefoneEnt);
-//		this.entregador.setSenha(senhaEnt);
-//		this.entregador.setEmEntrega(emEntrega);
+	public Pedido() {
+		
+	}
+	
+	public Pedido(
+			Integer id, LocalDateTime dataCriacao, 
+			Integer valorTotal, String status, 
+			Integer numeroEnt , String nomeEnt, 
+			String emailEnt, String telefoneEnt, 
+			String senhaEnt, boolean emEntrega
+			) {
+		super();
+		this.id = id;
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+		this.entregador = new Entregador();
+		this.entregador.setId(numeroEnt);
+		this.entregador.setNome(nomeEnt);
+		this.entregador.setEmail(emailEnt);
+		this.entregador.setTelefone(telefoneEnt);
+		this.entregador.setSenha(senhaEnt);
+		this.entregador.setEmEntrega(emEntrega);
 //		this.cliente = new Cliente();
 //		this.cliente.setId(numeroCli);
 //		this.cliente.setNome(nomeCli);
 //		this.cliente.setSenha(senhaCli);
+	}
+
+//	public Cliente getCliente() {
+//		return cliente;
 //	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+//
+//	public void setCliente(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 
 	public Integer getId() {
 		return id;
