@@ -20,7 +20,7 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
      + "                                          entregador.telefone,"
      + "                                          entregador.senha, "
      + "                                          entregador.emEntrega)"
-	 + "FROM "
-     + "Pedido as pedido INNER JOIN Entregador as entregador ON entregador.id = pedido.entregador.id")
-	public List<Pedido> listarTodosPedidos();
+	 + " FROM "
+     + "Pedido as pedido INNER JOIN Entregador as entregador ON pedido.status = 'em_aberto'")
+	public List<Pedido> listarPedidosEmAberto();
 }
