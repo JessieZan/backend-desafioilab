@@ -35,6 +35,7 @@ public class Cliente {
 		return id;
 	}
 	
+
 	public Cliente() {
 		super();
 	}
@@ -46,6 +47,7 @@ public class Cliente {
 		this.nome = nome;
 		this.senha = senha;
 	}
+
 
 	public void setId(Integer id) {
 		this.id = id;

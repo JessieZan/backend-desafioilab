@@ -40,6 +40,7 @@ public class Entregador {
 	@JsonIgnoreProperties("entregador")
 	private List<Pedido> listaDePedidos;
 	
+
 	public Entregador() {
 		super();
 	}
@@ -55,6 +56,7 @@ public class Entregador {
 		this.emEntrega = emEntrega;
 		this.listaDePedidos = listaDePedidos;
 	}
+
 
 
 	public List<Pedido> getListaDePedidos() {

@@ -19,10 +19,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.antMatchers(HttpMethod.GET, "/pedidos")
 		.permitAll()
+
 		.antMatchers(HttpMethod.GET, "/clientes")
 		.permitAll()
 		.antMatchers(HttpMethod.GET, "/clientes/*")
 		.permitAll()
+
 		.anyRequest().authenticated().and().cors();
 
 		httpSec.addFilterBefore(new Filters(), UsernamePasswordAuthenticationFilter.class);
