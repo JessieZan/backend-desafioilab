@@ -1,74 +1,61 @@
 package com.durodecodar.desafioilab.model;
 
-import java.security.Timestamp;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "rastreamento_pedido")
 public class CoordenadasPedido {
-	@Id
-	@Column(name="id",  nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name = "timestamp_vinculado")
-	private Timestamp timestampVinculado;
-	
-	@Column(name = "latitude", nullable = false)
-	private String latitude;
-	
-	@Column(name = "longitude", nullable = false)
-	private String longitude;
 
-	public Integer getId() {
-		return id;
-	}
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  @Column(name = "timestamp_vinculado")
+  private LocalDateTime timestamp;
 
-	public Timestamp getTimestampVinculado() {
-		return timestampVinculado;
-	}
+  //@OneToMany(mappedBy = "rastreamento_pedido", cascade = CascadeType.ALL)
+  //@JsonIgnoreProperties("rastreamento_pedido")
+  @ElementCollection
+  private List<String> RastreamentoPedido;
 
-	public void setTimestampVinculado(Timestamp timestampVinculado) {
-		this.timestampVinculado = timestampVinculado;
-	}
+  public CoordenadasPedido() {
+    super();
+  }
 
-	public String getLatitude() {
-		return latitude;
-	}
+  public CoordenadasPedido(Integer id, LocalDateTime timestamp, List<String> rastreamentoPedido) {
+    this.id = id;
+    this.timestamp = timestamp;
+    RastreamentoPedido = rastreamentoPedido;
+  }
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
+  public Integer getId() {
+    return id;
+  }
 
-	public String getLongitude() {
-		return longitude;
-	}
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
 
-	public CoordenadasPedido(Timestamp timestampVinculado, String latitude, String longitude) {
-		super();
-		this.timestampVinculado = timestampVinculado;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+  public void setTimestamp(LocalDateTime timestamp) {
+    this.timestamp = timestamp;
+  }
 
-	public CoordenadasPedido() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
+  public List<String> getRastreamentoPedido() {
+    return RastreamentoPedido;
+  }
+
+  public void setRastreamentoPedido(List<String> rastreamentoPedido) {
+    RastreamentoPedido = rastreamentoPedido;
+  }
+
+
 }
