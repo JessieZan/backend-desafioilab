@@ -20,7 +20,19 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
      + "                                          entregador.telefone,"
      + "                                          entregador.senha, "
      + "                                          entregador.emEntrega)"
+
 	 + " FROM "
      + "Pedido as pedido INNER JOIN Entregador as entregador ON pedido.status = 'em_aberto'")
-	public List<Pedido> listarPedidosEmAberto();
+	public List<Pedido> getPedidoPorId();
+	
+	
+	
+	@Query(" SELECT "
+			+ " new com.durodecodar.desafioilab.model.Pedido("
+			+ "  pedido.dataCriacao,"
+			+ "  pedido.valorTotal,"
+			+ "  pedido.status)"
+			+ "FROM Pedido as pedido WHERE pedido.status = 'em_aberto'")
+	public List<Pedido> getPedidosEmAberto();
+
 }

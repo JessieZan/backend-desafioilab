@@ -3,6 +3,7 @@ package com.durodecodar.desafioilab.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +15,28 @@ import com.durodecodar.desafioilab.services.IPedidoServices;
 import com.durodecodar.desafioilab.util.Mensagem;
 
 @RestController
+@CrossOrigin("*")
 public class PedidoController {
 
 		@Autowired
 //		@Qualifier("dia-a-dia")
 		private IPedidoServices service;
 		
-		@GetMapping("/pedidos/emAberto")
-		public List<Pedido> recuperarTodosPedidosEmAberto(){
-			return service.recuperarTodos();
+
+
+		@GetMapping("/pedidos/id")
+		public List<Pedido> recuperarPedidoPorId(){
+
+			return (List<Pedido>)dao.getPedidoPorId();
+
+		}
+		
+		@GetMapping("/pedidos/em-aberto")
+		public List<Pedido> recuperarTodos(){
+
+			return (List<Pedido>)dao.getPedidosEmAberto();
+
+
 		}
 		
 		@GetMapping("/pedidos")

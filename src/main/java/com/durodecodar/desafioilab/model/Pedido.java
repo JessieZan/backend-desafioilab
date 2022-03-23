@@ -40,10 +40,24 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	public Pedido() {
-		
-	}
 	
+	
+	public Pedido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status) {
+		super();
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+	}
+
+
+
 	public Pedido(
 			Integer id, LocalDateTime dataCriacao, 
 			Integer valorTotal, String status, 
@@ -62,15 +76,22 @@ public class Pedido {
 		this.entregador.setTelefone(telefoneEnt);
 		this.entregador.setSenha(senhaEnt);
 		this.entregador.setEmEntrega(emEntrega);
+
+
 	}
 
 	public Cliente getCliente() {
 		return cliente;
+
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+//	public Cliente getCliente() {
+//		return cliente;
+//	}
+//
+//	public void setCliente(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -114,3 +135,4 @@ public class Pedido {
 
 	
 }
+
