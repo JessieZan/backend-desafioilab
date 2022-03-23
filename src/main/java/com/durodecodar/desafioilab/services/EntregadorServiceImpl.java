@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.durodecodar.desafioilab.dao.EntregadorDAO;
 import com.durodecodar.desafioilab.dto.EntregadorDTO;
+import com.durodecodar.desafioilab.dto.EntregadorLoginDTO;
 import com.durodecodar.desafioilab.model.Entregador;
+
+import com.durodecodar.desafioilab.security.Token;
+import com.durodecodar.desafioilab.security.TokenUtils;
 
 
 @Component
@@ -28,6 +32,17 @@ public class EntregadorServiceImpl implements IEntregadorService{
 	@Override
 	public EntregadorDTO recuperarPeloId(Integer id) {
 		return dao.recuperarPeloId(id);
+	}
+  
+  @Override
+	public Token gerarTokenEntregador(EntregadorLoginDTO dadosLogin) {
+		Entregador user = dao.findByEmailOrTelefone(dadosLogin.getEmail(), dadosLogin.getTelefone());
+		if (user != null) {
+			if (user.getSenha().equals(dadosLogin.getSenha())) {
+				return new Token(TokenUtils.createToken(user));
+			}
+		}
+		return null;
 	}
 	
 }
