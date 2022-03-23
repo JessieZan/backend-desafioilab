@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.durodecodar.desafioilab.dto.EntregadorDTO;
 import com.durodecodar.desafioilab.model.Entregador;
 
-public interface EntregadorDAO extends CrudRepository<Entregador, Integer>{
+public interface EntregadorDAO extends CrudRepository<Entregador, Integer> {
 	@Query("    SELECT "
 			+ "new com.durodecodar.desafioilab.dto.EntregadorDTO("
 			+ "  entregador.id,"
@@ -27,4 +27,6 @@ public interface EntregadorDAO extends CrudRepository<Entregador, Integer>{
 			+ "  entregador.telefone)"
 			+ "FROM Entregador as entregador WHERE entregador.id = :id")
 	public EntregadorDTO recuperarPeloId(@Param("id") Integer numero);
+  public Entregador findByEmailOrTelefone(String email, String telefone);
+
 }
