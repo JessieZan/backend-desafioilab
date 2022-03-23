@@ -18,6 +18,13 @@ public class PedidoController {
 		@Autowired
 		private PedidoDAO dao;
 		
+		@GetMapping("/pedidos")
+		public List<Pedido> recuperarPedidos(){
+			List<Pedido> lista;
+			lista = (List<Pedido>) dao.findAll();
+			return lista;
+		}
+		
 		@GetMapping("/pedidos/id")
 		public List<Pedido> recuperarPedidoPorId(){
 
