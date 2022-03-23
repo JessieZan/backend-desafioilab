@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.durodecodar.desafioilab.dao.PedidoDAO;
@@ -17,10 +18,12 @@ public class PedidoController {
 		@Autowired
 		private PedidoDAO dao;
 		
-		@GetMapping("/pedidos")
+		@GetMapping("/pedidos/emAberto")
 		public List<Pedido> recuperarTodos(){
-			List<Pedido> lista;
-			lista = (List<Pedido>) dao.findAll();
-			return lista;
+
+			return (List<Pedido>)dao.listarPedidosEmAberto();
+
 		}
+		
+		
 }
