@@ -20,17 +20,18 @@ public class CoordenadasPedido {
 
   //@OneToMany(mappedBy = "rastreamento_pedido", cascade = CascadeType.ALL)
   //@JsonIgnoreProperties("rastreamento_pedido")
-  @ElementCollection
-  private List<String> RastreamentoPedido;
+  //@ElementCollection
+  @Column(name = "coordenada")
+  private String coordenada;
 
   public CoordenadasPedido() {
     super();
   }
 
-  public CoordenadasPedido(Integer id, LocalDateTime timestamp, List<String> rastreamentoPedido) {
+  public CoordenadasPedido(Integer id, LocalDateTime timestamp, String coordenada) {
     this.id = id;
     this.timestamp = timestamp;
-    RastreamentoPedido = rastreamentoPedido;
+    this.coordenada = coordenada;
   }
 
   public Integer getId() {
@@ -49,13 +50,11 @@ public class CoordenadasPedido {
     this.timestamp = timestamp;
   }
 
-  public List<String> getRastreamentoPedido() {
-    return RastreamentoPedido;
+  public String getCoordenada() {
+    return coordenada;
   }
 
-  public void setRastreamentoPedido(List<String> rastreamentoPedido) {
-    RastreamentoPedido = rastreamentoPedido;
+  public void setCoordenada(String coordenada) {
+    this.coordenada = coordenada;
   }
-
-
 }
