@@ -16,10 +16,17 @@ public class PedidoController {
 		@Autowired
 		private PedidoDAO dao;
 		
-		@GetMapping("/pedidos/emAberto")
+		@GetMapping("/pedidos/id")
+		public List<Pedido> recuperarPedidoPorId(){
+
+			return (List<Pedido>)dao.getPedidoPorId();
+
+		}
+		
+		@GetMapping("/pedidos/em-aberto")
 		public List<Pedido> recuperarTodos(){
 
-			return (List<Pedido>)dao.listarPedidosEmAberto();
+			return (List<Pedido>)dao.getPedidosEmAberto();
 
 		}
 		

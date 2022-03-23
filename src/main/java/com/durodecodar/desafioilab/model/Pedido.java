@@ -40,10 +40,24 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	public Pedido() {
-		
-	}
 	
+	
+	public Pedido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status) {
+		super();
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+	}
+
+
+
 	public Pedido(
 			Integer id, LocalDateTime dataCriacao, 
 			Integer valorTotal, String status, 
