@@ -23,7 +23,7 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 
 	 + " FROM "
      + "Pedido as pedido INNER JOIN Entregador as entregador ON pedido.status = 'em_aberto'")
-	public List<Pedido> getPedidoPorId();
+	public Pedido  buscarPedidoPorId();
 	
 	
 	
@@ -33,6 +33,6 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 			+ "  pedido.valorTotal,"
 			+ "  pedido.status)"
 			+ "FROM Pedido as pedido WHERE pedido.status = 'em_aberto'")
-	public List<Pedido> getPedidosEmAberto();
+	public List<Pedido> listaPedidosEmAberto();
 
 }

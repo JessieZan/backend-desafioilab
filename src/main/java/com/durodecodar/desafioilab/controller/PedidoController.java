@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,17 +25,12 @@ public class PedidoController {
 		
 
 
-		@GetMapping("/pedidos/id")
-		public List<Pedido> recuperarPedidoPorId(){
-
-			return (List<Pedido>)dao.getPedidoPorId();
-
-		}
+		
 		
 		@GetMapping("/pedidos/em-aberto")
 		public List<Pedido> recuperarTodos(){
 
-			return (List<Pedido>)dao.getPedidosEmAberto();
+			return (List<Pedido>)service.listaPedidosEmAberto();
 
 
 		}

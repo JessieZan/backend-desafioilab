@@ -13,10 +13,10 @@ public interface IPedidoServices {
 
 	boolean removerPedido(Integer id);
 	
-	public List<Pedido> recuperarTodos();
-	
 	public ResponseEntity<List<Pedido>> listarTodosPedidos();
 	
 	public ResponseEntity<?> buscarPedidoPorId(@PathVariable Integer idPedido);
+
+	List<Pedido> listaPedidosEmAberto();
 	
 }

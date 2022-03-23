@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.durodecodar.desafioilab.dao.PedidoDAO;
 import com.durodecodar.desafioilab.model.Pedido;
@@ -35,8 +34,8 @@ public class PedidoServiceImpl implements IPedidoServices{
 	}
 
 	@Override
-	public List<Pedido> recuperarTodos() {
-		return (List<Pedido>)dao.listarPedidosEmAberto();
+	public List<Pedido> listaPedidosEmAberto() {
+		return (List<Pedido>)dao.listaPedidosEmAberto();
 	}
 
 	@Override
@@ -53,6 +52,8 @@ public class PedidoServiceImpl implements IPedidoServices{
 		}
 		return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
 	}
+
+	
 
 
 }
