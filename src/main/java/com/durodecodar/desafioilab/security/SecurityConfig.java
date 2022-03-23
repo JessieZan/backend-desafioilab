@@ -20,27 +20,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSec.csrf().disable()
 		.exceptionHandling()
 		.authenticationEntryPoint(entryPoint).and()
-		.authorizeRequests() 
-		.antMatchers(HttpMethod.GET, "/entregadores")
-		.permitAll()
-		.antMatchers(HttpMethod.GET, "/entregadores/*")
-		.permitAll()
-		.antMatchers(HttpMethod.GET, "/pedidos")
-		.permitAll()
-		.antMatchers(HttpMethod.GET, "/pedidos/*")
-		.permitAll()
+		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/login")
 		.permitAll()
-		.antMatchers(HttpMethod.GET, "/clientes")
-		.permitAll()
-		.antMatchers(HttpMethod.GET, "/clientes/*")
-		.permitAll()
-
-		
-		.antMatchers(HttpMethod.GET, "/pedidos/em-aberto")
-		.permitAll()
-
-
+//		.antMatchers(HttpMethod.GET, "/entregadores")
+//		.permitAll()
+//		.antMatchers(HttpMethod.GET, "/entregadores/*")
+//		.permitAll()
+//		.antMatchers(HttpMethod.GET, "/pedidos")
+//		.permitAll()
+//		.antMatchers(HttpMethod.GET, "/pedidos/*")
+//		.permitAll()
+//		.antMatchers(HttpMethod.GET, "/clientes")
+//		.permitAll()
+//		.antMatchers(HttpMethod.GET, "/clientes/*")
+//		.permitAll()
+//		.antMatchers(HttpMethod.GET, "/pedidos/em-aberto")
+//		.permitAll()
 		.anyRequest().authenticated().and().cors();
 
 		httpSec.addFilterBefore(new Filters(), UsernamePasswordAuthenticationFilter.class);
