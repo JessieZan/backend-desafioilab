@@ -2,28 +2,31 @@ package com.durodecodar.desafioilab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.durodecodar.desafioilab.dto.EntregadorLoginDTO;
+import com.durodecodar.desafioilab.security.Token;
+import com.durodecodar.desafioilab.services.IEntregadorService;
 
 @RestController
 @CrossOrigin("*")
 public class LoginController {
-	
-	//@Autowired
-	//private IUsuarioService service;
-	
-	//@PostMapping("/login")
-	//public ResponseEntity<?> postLogin(@RequestBody EntregadorLoginDTO dadosLogin){
-		//Token t = service.createTokenDeUsuarioLogado(dadosLogin);
-		//if(t != null) {
-			//return ResponseEntity.ok(t);
-		//};
-		
-		//return ResponseEntity.status(400).body("Dados inválidos!");
-		
-	//}
+
+	@Autowired
+	private IEntregadorService service;
+
+	@PostMapping("/login")
+	public ResponseEntity<?> realizarLogin(@RequestBody EntregadorLoginDTO dadosLogin) {
+		Token token = service.gerarTokenEntregador(dadosLogin);
+
+		if (token != null) {
+			return ResponseEntity.ok(token);
+		}
+
+		return ResponseEntity.status(401).body("Acesso Negado");
+
+	}
 }

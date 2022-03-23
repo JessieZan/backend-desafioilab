@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 public class Filters extends OncePerRequestFilter {
@@ -15,7 +17,11 @@ public class Filters extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
-		System.out.println("Passou pelo filtro em com.durodecodar.desafioilab.security");
+		if (request.getHeader("Authorization") != null) {
+			Authentication auth = TokenUtils.validate(request);
+			SecurityContextHolder.getContext().setAuthentication(auth);
+		}
+
 		filterChain.doFilter(request, response);
 	}
 
