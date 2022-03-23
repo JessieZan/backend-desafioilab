@@ -6,6 +6,18 @@ public class EntregadorLoginDTO {
 	private String telefone;
 	private String senha;
 	
+	
+	
+	public EntregadorLoginDTO(String email, String telefone, String senha) {
+		super();
+		this.email = email;
+		this.telefone = telefone;
+		this.senha = senha;
+	}
+	public EntregadorLoginDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getEmail() {
 		return email;
 	}
