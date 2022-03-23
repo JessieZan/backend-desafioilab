@@ -22,11 +22,7 @@ public class PedidoController {
 		@Autowired
 //		@Qualifier("dia-a-dia")
 		private IPedidoServices service;
-		
-
-
-		
-		
+  
 		@GetMapping("/pedidos/em-aberto")
 		public List<Pedido> recuperarTodos(){
 
