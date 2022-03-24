@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfef5a-feef-447d-80e2-5d1592e63ad0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/controller/PedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/controller/PedidoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/dao/PedidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/dao/PedidoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/services/IPedidoServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/durodecodar/desafioilab/services/IPedidoServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +98,7 @@
       <workItem from="1647960629173" duration="6121000" />
       <workItem from="1647983484324" duration="1449000" />
       <workItem from="1648054535632" duration="6002000" />
-      <workItem from="1648078970627" duration="2425000" />
+      <workItem from="1648078970627" duration="3296000" />
     </task>
     <servers />
   </component>

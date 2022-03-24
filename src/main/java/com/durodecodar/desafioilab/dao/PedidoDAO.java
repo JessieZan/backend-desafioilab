@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.model.CoordenadasPedido;
+import org.springframework.data.repository.query.Param;
 
 public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 	
@@ -25,8 +26,8 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 	 + " FROM "
      + "Pedido as pedido INNER JOIN Entregador as entregador ON pedido.status = 'em_aberto'")
 	public Pedido  buscarPedidoPorId();
-	
-	
+
+
 	
 	@Query(" SELECT "
 			+ " new com.durodecodar.desafioilab.model.Pedido("
@@ -39,7 +40,8 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 	@Query("SELECT new com.durodecodar.desafioilab.model.Pedido( " +
 					" pedido.valorTotal," +
 					" pedido.status," +
-					" pedido.coordenadasPedido) FROM Pedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido")
-	public List<CoordenadasPedido> listarCoordenadasPedido();
+					" pedido.coordenadasPedido) FROM Pedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
+					" WHERE pedido.id = :id")
+	public List<Pedido> listarCoordenadasPedido(@Param("id") Integer id);
 
 }

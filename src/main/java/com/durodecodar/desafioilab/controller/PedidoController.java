@@ -25,10 +25,7 @@ public class PedidoController {
   
 		@GetMapping("/pedidos/em-aberto")
 		public List<Pedido> recuperarTodos(){
-
 			return (List<Pedido>)service.listaPedidosEmAberto();
-
-
 		}
 		
 		@GetMapping("/pedidos")
@@ -40,6 +37,8 @@ public class PedidoController {
 		public ResponseEntity<?> buscarPorId(@PathVariable Integer idPedido){
 			return service.buscarPedidoPorId(idPedido);
 		}
+
+		@GetMapping("/pedido/")
 		
 //		@DeleteMapping("/pedidos/{id}")
 //		public ResponseEntity<?> removerPedido(@PathVariable Integer id){
