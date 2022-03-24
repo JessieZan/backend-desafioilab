@@ -39,8 +39,12 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
-
 	
+	private String coordenadasPedido;
+
+	public Pedido(String coordenadasPedido) {
+		this.coordenadasPedido = coordenadasPedido;
+	}	
 	
 	public Pedido() {
 		super();
