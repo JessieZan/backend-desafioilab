@@ -7,11 +7,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO;
 import com.durodecodar.desafioilab.model.Pedido;
 
 public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 	
 	
 	public List<Pedido> findByStatusOrderByDataCriacao(String status);
+	
+	@Query("SELECT new com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO(pedido.idPedido, coordenadas.coordenada, " +
+			"coordenadas.timestamp)" +
+			" FROM CoordenadasPedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
+			" WHERE pedido.id = :id")
+List<CoordenadasPedidoDTO> listarCoordenadasPedido(@Param("id") Integer id);
 	
 }

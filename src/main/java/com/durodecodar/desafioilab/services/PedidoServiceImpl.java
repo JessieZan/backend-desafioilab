@@ -52,4 +52,8 @@ public class PedidoServiceImpl implements IPedidoServices {
 
 	}
 
+	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
+		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
+	}
+
 }

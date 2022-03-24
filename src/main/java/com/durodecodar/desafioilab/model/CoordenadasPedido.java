@@ -1,74 +1,83 @@
 package com.durodecodar.desafioilab.model;
 
-import java.security.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "rastreamento_pedido")
 public class CoordenadasPedido {
-	@Id
-	@Column(name="id",  nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name = "timestamp_vinculado")
-	private Timestamp timestampVinculado;
-	
-	@Column(name = "latitude", nullable = false)
-	private String latitude;
-	
-	@Column(name = "longitude", nullable = false)
-	private String longitude;
 
-	public Integer getId() {
-		return id;
-	}
+  @Id
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  @Column(name = "id_pedido")
+  private Integer idPedido;
 
-	public Timestamp getTimestampVinculado() {
-		return timestampVinculado;
-	}
+  @Column(name = "id_entregador")
+  private Integer idEntregador;
 
-	public void setTimestampVinculado(Timestamp timestampVinculado) {
-		this.timestampVinculado = timestampVinculado;
-	}
+  @Column(name = "timestamp_vinculado")
+  private LocalDateTime timestamp;
 
-	public String getLatitude() {
-		return latitude;
-	}
+  @Column(name = "coordenadas")
+  private String coordenada;
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
+  public CoordenadasPedido() {
+    super();
+  }
 
-	public String getLongitude() {
-		return longitude;
-	}
+  public CoordenadasPedido(Integer idPedido,String coordenada, LocalDateTime timestamp) {
+    this.idPedido = idPedido;
+    this.timestamp = timestamp;
+    this.coordenada = coordenada;
+  }
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
+  public CoordenadasPedido(Integer idPedido, Integer idEntregador ,LocalDateTime timestamp, String coordenada) {
+    this.idPedido = idPedido;
+    this.idEntregador = idEntregador;
+    this.timestamp = timestamp;
+    this.coordenada = coordenada;
+  }
 
-	public CoordenadasPedido(Timestamp timestampVinculado, String latitude, String longitude) {
-		super();
-		this.timestampVinculado = timestampVinculado;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+  public Integer getIdEntregador() {
+    return idEntregador;
+  }
 
-	public CoordenadasPedido() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
+  public void setIdEntregador(Integer idEntregador) {
+    this.idEntregador = idEntregador;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Integer getIdPedido() {
+    return idPedido;
+  }
+
+  public void setIdPedido(Integer idPedido) {
+    this.idPedido = idPedido;
+  }
+
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(LocalDateTime timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  public String getCoordenada() {
+    return coordenada;
+  }
+
+  public void setCoordenada(String coordenada) {
+    this.coordenada = coordenada;
+  }
 }

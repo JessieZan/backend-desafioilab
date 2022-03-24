@@ -19,5 +19,7 @@ public interface IPedidoServices {
 	public Pedido atualizarStatusPedido(Pedido pedido);
 
 //	List<Pedido> listaPedidosTESTANDO();
+	
+	ResponseEntity<?> listarCoordenadasPedido(Integer id);
 
 }
