@@ -44,7 +44,7 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 					" WHERE pedido.id = :id")
 	public List<Pedido> listarCoordenadasPedido(@Param("id") Integer id);*/
 
-	@Query("SELECT new com.durodecodar.desafioilab.model.CoordenadasPedido(coordenadas.coordenada," +
+	@Query("SELECT new com.durodecodar.desafioilab.model.CoordenadasPedido(pedido.id, coordenadas.coordenada," +
 					"coordenadas.timestamp)" +
 					" FROM Pedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
 					" WHERE pedido.id = :id")

@@ -24,9 +24,6 @@ public class CoordenadasPedido {
   @Column(name = "timestamp_vinculado")
   private LocalDateTime timestamp;
 
-  //@OneToMany(mappedBy = "rastreamento_pedido", cascade = CascadeType.ALL)
-  //@JsonIgnoreProperties("rastreamento_pedido")
-  //@ElementCollection
   @Column(name = "coordenadas")
   private String coordenada;
 
@@ -34,7 +31,8 @@ public class CoordenadasPedido {
     super();
   }
 
-  public CoordenadasPedido(String coordenada, LocalDateTime timestamp) {
+  public CoordenadasPedido(Integer idPedido,String coordenada, LocalDateTime timestamp) {
+    this.idPedido = idPedido;
     this.timestamp = timestamp;
     this.coordenada = coordenada;
   }

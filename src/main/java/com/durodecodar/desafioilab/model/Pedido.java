@@ -34,11 +34,6 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	/*@OneToMany
-	@JoinColumn(name = "id_pedido")
-	private List<CoordenadasPedido> coordenadasPedido;*/
-
-	//@JoinColumn(name = "id_pedido")
 	private String coordenadasPedido;
 
 	public Pedido(String coordenadasPedido) {

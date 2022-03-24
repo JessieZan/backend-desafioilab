@@ -63,7 +63,6 @@ public class PedidoServiceImpl implements IPedidoServices{
 
 	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
 		return ResponseEntity.ok(dao.listarCoordenadasPedido(id));
-		//return dao.listarCoordenadasPedido(id);
 	}
 	
 
