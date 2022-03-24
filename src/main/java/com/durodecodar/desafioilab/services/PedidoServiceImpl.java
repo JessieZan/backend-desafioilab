@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.durodecodar.desafioilab.dao.EntregadorDAO;
 import com.durodecodar.desafioilab.dao.PedidoDAO;
+import com.durodecodar.desafioilab.model.Entregador;
 import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.util.Mensagem;
 
@@ -17,6 +19,9 @@ public class PedidoServiceImpl implements IPedidoServices {
 
 	@Autowired
 	private PedidoDAO pedidoDao;
+	
+	@Autowired
+	private EntregadorDAO entregadorDao;
 
 	@Override
 	public List<Pedido> listaPedidosEmAberto() {
@@ -54,6 +59,20 @@ public class PedidoServiceImpl implements IPedidoServices {
 
 	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
 		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
+	}
+
+
+	@Override
+	public ResponseEntity<?> atribuirEntregadorAoPedido(Integer idPedido, Integer entregadorId) {
+		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
+		
+		if (pedido != null) {
+		Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
+			pedido.setEntregador(entregador);
+			pedidoDao.save(pedido);
+			return ResponseEntity.ok(pedido);
+		}
+		return null;
 	}
 
 }

@@ -19,6 +19,10 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 			"coordenadas.timestamp)" +
 			" FROM CoordenadasPedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
 			" WHERE pedido.id = :id")
-List<CoordenadasPedidoDTO> listarCoordenadasPedido(@Param("id") Integer id);
+	List<CoordenadasPedidoDTO> listarCoordenadasPedido(@Param("id") Integer id);
 	
+//	@Query("UPDATE new com.durodecodar.desafioilab.dto.PedidoDTO(pedido.idPedido, pedido.entregadorId, " +
+//			" FROM Pedido as pedido INNER JOIN Entregador as entregador on pedido.id = coordenadas.idPedido" +
+//			" WHERE pedido.id = :id")
+//	public void atribuirEntregadorAoPedido(Integer idPedido, Integer entregadorId);
 }
