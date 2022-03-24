@@ -27,13 +27,27 @@ public class Cliente {
 	@Column(name = "senha", nullable = false, columnDefinition = "TEXT")
 	private String senha;
 	
-	@OneToMany(mappedBy = "cliente")
-	@JsonIgnoreProperties("cliente")
-	private List<Pedido>listaDePedidosCliente;
+//	@OneToMany(mappedBy = "cliente")
+//	@JsonIgnoreProperties("cliente")
+//	private List<Pedido>listaDePedidosCliente;
 
 	public Integer getId() {
 		return id;
 	}
+	
+
+	public Cliente() {
+		super();
+	}
+
+
+	public Cliente(Integer id, String nome, String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.senha = senha;
+	}
+
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -55,13 +69,13 @@ public class Cliente {
 		this.senha = senha;
 	}
 
-	public List<Pedido> getListaDePedidosCliente() {
-		return listaDePedidosCliente;
-	}
-
-	public void setListaDePedidosCliente(List<Pedido> listaDePedidosCliente) {
-		this.listaDePedidosCliente = listaDePedidosCliente;
-	}
+//	public List<Pedido> getListaDePedidosCliente() {
+//		return listaDePedidosCliente;
+//	}
+//
+//	public void setListaDePedidosCliente(List<Pedido> listaDePedidosCliente) {
+//		this.listaDePedidosCliente = listaDePedidosCliente;
+//	}
 	
 	
 }
