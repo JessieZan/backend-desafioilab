@@ -23,8 +23,9 @@ public class PedidoController {
 
 		@Autowired
 		private IPedidoServices service;
-		
-		@GetMapping("/pedido/em-aberto")
+
+  
+		@GetMapping("/pedidos/em-aberto")
 		public List<Pedido> recuperarTodos(){
 			return (List<Pedido>)service.listaPedidosEmAberto();
 		}
