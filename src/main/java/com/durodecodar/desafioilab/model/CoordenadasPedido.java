@@ -18,6 +18,9 @@ public class CoordenadasPedido {
   @Column(name = "id_pedido")
   private Integer idPedido;
 
+  @Column(name = "id_entregador")
+  private Integer idEntregador;
+
   @Column(name = "timestamp_vinculado")
   private LocalDateTime timestamp;
 
@@ -36,12 +39,35 @@ public class CoordenadasPedido {
     this.coordenada = coordenada;
   }
 
+  public CoordenadasPedido(Integer idPedido, Integer idEntregador ,LocalDateTime timestamp, String coordenada) {
+    this.idPedido = idPedido;
+    this.idEntregador = idEntregador;
+    this.timestamp = timestamp;
+    this.coordenada = coordenada;
+  }
+
+  public Integer getIdEntregador() {
+    return idEntregador;
+  }
+
+  public void setIdEntregador(Integer idEntregador) {
+    this.idEntregador = idEntregador;
+  }
+
   public Integer getId() {
     return id;
   }
 
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  public Integer getIdPedido() {
+    return idPedido;
+  }
+
+  public void setIdPedido(Integer idPedido) {
+    this.idPedido = idPedido;
   }
 
   public LocalDateTime getTimestamp() {

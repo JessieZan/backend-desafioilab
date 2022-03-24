@@ -50,4 +50,6 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 					" WHERE pedido.id = :id")
 	public List<CoordenadasPedido> listarCoordenadasPedido(@Param("id") Integer id);
 
+
+
 }
