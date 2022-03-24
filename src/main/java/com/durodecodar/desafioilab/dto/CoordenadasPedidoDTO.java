@@ -1,15 +1,18 @@
 package com.durodecodar.desafioilab.dto;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 
-public class CoordenadaPedidoDTO {
+public class CoordenadasPedidoDTO {
 
   private Integer idPedido;
-
   private LocalDateTime timestamp;
-
   private String coordenada;
+
+  public CoordenadasPedidoDTO(Integer idPedido, String coordenada, LocalDateTime timestamp) {
+    this.idPedido = idPedido;
+    this.timestamp = timestamp;
+    this.coordenada = coordenada;
+  }
 
   public Integer getIdPedido() {
     return idPedido;
