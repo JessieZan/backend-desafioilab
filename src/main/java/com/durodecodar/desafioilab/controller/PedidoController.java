@@ -46,8 +46,9 @@ public class PedidoController {
 			return service.buscarPedidoPorId(idPedido);
 		}
 		
-		@PutMapping("/pedidos")
-		public Pedido alterarStatusPedido(@RequestBody Pedido pedidoAtualizado) {
+		@PutMapping("/pedidos/{id}")
+		public Pedido alterarStatusPedidoAtribuirEntregador(@RequestBody Pedido pedidoAtualizado) {
+			
 			return service.atualizarStatusPedido(pedidoAtualizado);
 		}
 		

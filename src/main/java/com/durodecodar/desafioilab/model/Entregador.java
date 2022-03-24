@@ -107,7 +107,7 @@ public class Entregador {
 		this.senha = senha;
 	}
 
-	public boolean isEmEntrega() {
+	public boolean getEmEntrega() {
 		return emEntrega;
 	}
 
