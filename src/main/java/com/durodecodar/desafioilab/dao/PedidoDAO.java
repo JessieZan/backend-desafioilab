@@ -39,18 +39,11 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 			+ "FROM Pedido as pedido WHERE pedido.status = 'em_aberto'")
 	public List<Pedido> listaPedidosEmAberto();
 
-	/*@Query("SELECT new com.durodecodar.desafioilab.model.Pedido( " +
-					" pedido.valorTotal," +
-					" pedido.status," +
-					" pedido.coordenadasPedido) FROM Pedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
-					" WHERE pedido.id = :id")
-	public List<Pedido> listarCoordenadasPedido(@Param("id") Integer id);*/
-
 	@Query("SELECT new com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO(pedido.idPedido, coordenadas.coordenada, " +
 					"coordenadas.timestamp)" +
 					" FROM CoordenadasPedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
 					" WHERE pedido.id = :id")
-	public List<CoordenadasPedidoDTO> listarCoordenadasPedido(@Param("id") Integer id);
+	List<CoordenadasPedidoDTO> listarCoordenadasPedido(@Param("id") Integer id);
 
 
 

@@ -1,10 +1,7 @@
 package com.durodecodar.desafioilab.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "rastreamento_pedido")

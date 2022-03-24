@@ -19,6 +19,5 @@ public interface IPedidoServices {
 
 	List<Pedido> listaPedidosEmAberto();
 
-	//List<Pedido> listarCoordenadasPedido(Integer id);
 	ResponseEntity<?> listarCoordenadasPedido(Integer id);
 }
