@@ -24,15 +24,14 @@ public class CoordenadasPedido {
   //@OneToMany(mappedBy = "rastreamento_pedido", cascade = CascadeType.ALL)
   //@JsonIgnoreProperties("rastreamento_pedido")
   //@ElementCollection
-  @Column(name = "coordenada")
+  @Column(name = "coordenadas")
   private String coordenada;
 
   public CoordenadasPedido() {
     super();
   }
 
-  public CoordenadasPedido(Integer id, LocalDateTime timestamp, String coordenada) {
-    this.id = id;
+  public CoordenadasPedido(String coordenada, LocalDateTime timestamp) {
     this.timestamp = timestamp;
     this.coordenada = coordenada;
   }

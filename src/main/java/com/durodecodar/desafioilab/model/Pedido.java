@@ -34,25 +34,20 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	@OneToMany
+	/*@OneToMany
 	@JoinColumn(name = "id_pedido")
-	private List<CoordenadasPedido> coordenadasPedido;
+	private List<CoordenadasPedido> coordenadasPedido;*/
+
+	//@JoinColumn(name = "id_pedido")
+	private String coordenadasPedido;
+
+	public Pedido(String coordenadasPedido) {
+		this.coordenadasPedido = coordenadasPedido;
+	}
 	
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Pedido(Integer valorTotal,
-								String status,
-								List<CoordenadasPedido> coordenadasPedido) {
-		this.id = id;
-		this.dataCriacao = dataCriacao;
-		this.valorTotal = valorTotal;
-		this.status = status;
-		this.entregador = entregador;
-		this.cliente = cliente;
-		this.coordenadasPedido = coordenadasPedido;
 	}
 
 	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status) {
@@ -61,8 +56,6 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 		this.status = status;
 	}
-
-
 
 	public Pedido(
 			Integer id, LocalDateTime dataCriacao, 
@@ -139,12 +132,5 @@ public class Pedido {
 		this.entregador = entregador;
 	}
 
-	public List<CoordenadasPedido> getCoordenadasPedido() {
-		return coordenadasPedido;
-	}
-
-	public void setCoordenadasPedido(List<CoordenadasPedido> coordenadasPedido) {
-		this.coordenadasPedido = coordenadasPedido;
-	}
 }
 

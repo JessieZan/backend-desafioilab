@@ -6,6 +6,7 @@ import com.durodecodar.desafioilab.model.CoordenadasPedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.durodecodar.desafioilab.dao.PedidoDAO;
@@ -13,6 +14,7 @@ import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.util.Mensagem;
 
 @Service
+@Component
 public class PedidoServiceImpl implements IPedidoServices{
 
 	@Autowired
@@ -54,8 +56,14 @@ public class PedidoServiceImpl implements IPedidoServices{
 		return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
 	}
 
-	public List<Pedido> listarCoordenadasPedido(Integer id) {
-		return dao.listarCoordenadasPedido(id);
+	/*public ResponseEntity<List<Pedido>> listarCoordenadasPedido(Integer id) {
+		return ResponseEntity.ok(dao.listarCoordenadasPedido(id));
+		//return dao.listarCoordenadasPedido(id);
+	}*/
+
+	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
+		return ResponseEntity.ok(dao.listarCoordenadasPedido(id));
+		//return dao.listarCoordenadasPedido(id);
 	}
 	
 

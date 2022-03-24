@@ -38,8 +38,11 @@ public class PedidoController {
 			return service.buscarPedidoPorId(idPedido);
 		}
 
-		@GetMapping("/pedido/")
-		
+		@GetMapping("/pedido/rastrear/{id}")
+		public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer id) {
+			return service.listarCoordenadasPedido(id);
+		}
+
 //		@DeleteMapping("/pedidos/{id}")
 //		public ResponseEntity<?> removerPedido(@PathVariable Integer id){
 //			if (service.removerPedido(id)) {
