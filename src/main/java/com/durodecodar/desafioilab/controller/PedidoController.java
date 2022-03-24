@@ -3,7 +3,6 @@ package com.durodecodar.desafioilab.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.durodecodar.desafioilab.dto.PedidoDTO;
 import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.services.IPedidoServices;
 import com.durodecodar.desafioilab.util.Mensagem;
@@ -20,30 +20,33 @@ import com.durodecodar.desafioilab.util.Mensagem;
 public class PedidoController {
 
 		@Autowired
-//		@Qualifier("dia-a-dia")
 		private IPedidoServices service;
-		
-
-
 		
 		
 		@GetMapping("/pedidos/em-aberto")
-		public List<Pedido> recuperarTodos(){
-
-			return (List<Pedido>)service.listaPedidosEmAberto();
-
-
+		public List<PedidoDTO> recuperarTodos(){
+			return (List<PedidoDTO>)service.listaPedidosEmAberto();
 		}
 		
 		@GetMapping("/pedidos")
-		public ResponseEntity<List<Pedido>> listarTodosPedidos(){
-			return service.listarTodosPedidos();
+		public ResponseEntity<List<PedidoDTO>> listarTodosPedidos(){ 
+			return ResponseEntity.ok(service.listarTodosPedidos());
 		}
 		
 		@GetMapping("/pedidos/{idPedido}")
-		public ResponseEntity<?> buscarPorId(@PathVariable Integer idPedido){
-			return service.buscarPedidoPorId(idPedido);
+		public ResponseEntity<?> buscarPedidoPorId(Integer idPedido) {
+			PedidoDTO pedido = service.buscarPedidoPorId(idPedido);
+			if(pedido != null) {
+				return ResponseEntity.ok(pedido);
+			}
+			return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
 		}
+		
+//		@GetMapping("/pedidos/{idPedido}")
+//		public ResponseEntity<?> buscarPorId(@PathVariable Integer idPedido){
+//			return service.buscarPedidoPorId(idPedido);
+//		}
+		
 		
 //		@DeleteMapping("/pedidos/{id}")
 //		public ResponseEntity<?> removerPedido(@PathVariable Integer id){

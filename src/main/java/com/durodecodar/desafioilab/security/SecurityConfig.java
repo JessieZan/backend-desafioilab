@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.antMatchers(HttpMethod.GET, "/clientes/*")
 		.permitAll()
+		.antMatchers(HttpMethod.GET, "/messages/*")
+		.permitAll()
 
 		
 		.antMatchers(HttpMethod.GET, "/pedidos/em-aberto")

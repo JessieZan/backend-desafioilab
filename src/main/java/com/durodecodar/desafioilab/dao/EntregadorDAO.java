@@ -15,7 +15,8 @@ public interface EntregadorDAO extends CrudRepository<Entregador, Integer> {
 			+ "  entregador.id,"
 			+ "  entregador.nome,"
 			+ "  entregador.email,"
-			+ "  entregador.telefone) "
+			+ "  entregador.telefone,"
+			+ "  entregador.emEntrega)"
 			+ "FROM Entregador as entregador")
 	public List<EntregadorDTO> recuperarTodos();
 	
@@ -24,7 +25,8 @@ public interface EntregadorDAO extends CrudRepository<Entregador, Integer> {
 			+ "  entregador.id,"
 			+ "  entregador.nome,"
 			+ "  entregador.email,"
-			+ "  entregador.telefone)"
+			+ "  entregador.telefone,"
+			+ "	 entregador.emEntrega)"
 			+ "FROM Entregador as entregador WHERE entregador.id = :id")
 	public EntregadorDTO recuperarPeloId(@Param("id") Integer numero);
   public Entregador findByEmailOrTelefone(String email, String telefone);
