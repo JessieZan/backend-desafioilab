@@ -19,6 +19,24 @@ public class PedidoServiceImpl implements IPedidoServices{
 	@Autowired
 	private PedidoDAO dao;
 	
+	@Override
+	public List<PedidoDTO> listaPedidosEmAberto() {
+		return dao.listaPedidosEmAberto();
+		//return (List<PedidoDTO>)dao.listaPedidosEmAberto();
+	}
+	@Override
+	public List<PedidoDTO> listarTodosPedidos() {
+		List<PedidoDTO> pedidos = dao.listaTodosPedidos();
+		System.err.println(pedidos);
+		return pedidos ;
+	}
+	
+	@Override
+	public PedidoDTO buscarPedidoPorId(Integer id) {
+		return dao.buscarPedidoPorId(id);
+	}
+	
+	
 //	@Override
 //	public Pedido adicionarPedido(Pedido pedido) {
 //		// TODO Auto-generated method stub
@@ -35,11 +53,6 @@ public class PedidoServiceImpl implements IPedidoServices{
 //		}
 //	}
 
-	@Override
-	public List<PedidoDTO> listaPedidosEmAberto() {
-		return dao.listaPedidosEmAberto();
-		//return (List<PedidoDTO>)dao.listaPedidosEmAberto();
-	}
 
 //	@Override
 //	public List<PedidoDTO> listarTodosPedidos() {
@@ -48,12 +61,6 @@ public class PedidoServiceImpl implements IPedidoServices{
 ////		return pedidos;
 //	}
 	
-	@Override
-    public List<PedidoDTO> listarTodosPedidos() {
-        List<PedidoDTO> pedidos = dao.listaTodosPedidos();
-        System.err.println(pedidos);
-        return pedidos ;
-    }
 
 //	@Override
 //	public ResponseEntity<?> buscarPedidoPorId(Integer idPedido) {
@@ -65,11 +72,7 @@ public class PedidoServiceImpl implements IPedidoServices{
 //	}
 	
 	
-	@Override
-	public PedidoDTO buscarPedidoPorId(Integer id) {
-		return dao.buscarPedidoPorId(id);
-	}
-	
+
 
 
 }

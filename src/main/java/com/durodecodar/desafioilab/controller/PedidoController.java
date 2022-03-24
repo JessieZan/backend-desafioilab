@@ -36,6 +36,7 @@ public class PedidoController {
 		@GetMapping("/pedidos/{idPedido}")
 		public ResponseEntity<?> buscarPedidoPorId(Integer idPedido) {
 			PedidoDTO pedido = service.buscarPedidoPorId(idPedido);
+			System.err.println(pedido);
 			if(pedido != null) {
 				return ResponseEntity.ok(pedido);
 			}
