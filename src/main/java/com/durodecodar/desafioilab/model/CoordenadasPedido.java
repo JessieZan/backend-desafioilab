@@ -15,6 +15,9 @@ public class CoordenadasPedido {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  @Column(name = "id_pedido")
+  private Integer idPedido;
+
   @Column(name = "timestamp_vinculado")
   private LocalDateTime timestamp;
 

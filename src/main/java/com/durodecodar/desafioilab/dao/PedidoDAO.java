@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.durodecodar.desafioilab.model.Pedido;
+import com.durodecodar.desafioilab.model.CoordenadasPedido;
 
 public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 	
@@ -34,5 +35,11 @@ public interface PedidoDAO  extends CrudRepository<Pedido, Integer>{
 			+ "  pedido.status)"
 			+ "FROM Pedido as pedido WHERE pedido.status = 'em_aberto'")
 	public List<Pedido> listaPedidosEmAberto();
+
+	@Query("SELECT new com.durodecodar.desafioilab.model.Pedido( " +
+					" pedido.valorTotal," +
+					" pedido.status," +
+					" pedido.coordenadasPedido) FROM Pedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido")
+	public List<CoordenadasPedido> listarCoordenadasPedido();
 
 }

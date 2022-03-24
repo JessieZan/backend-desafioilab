@@ -1,15 +1,9 @@
 package com.durodecodar.desafioilab.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -40,15 +34,27 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	
+	@OneToMany
+	@JoinColumn(name = "id_pedido")
+	private List<CoordenadasPedido> coordenadasPedido;
 	
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
+	public Pedido(Integer valorTotal,
+								String status,
+								List<CoordenadasPedido> coordenadasPedido) {
+		this.id = id;
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+		this.entregador = entregador;
+		this.cliente = cliente;
+		this.coordenadasPedido = coordenadasPedido;
+	}
+
 	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status) {
 		super();
 		this.dataCriacao = dataCriacao;
@@ -133,6 +139,12 @@ public class Pedido {
 		this.entregador = entregador;
 	}
 
-	
+	public List<CoordenadasPedido> getCoordenadasPedido() {
+		return coordenadasPedido;
+	}
+
+	public void setCoordenadasPedido(List<CoordenadasPedido> coordenadasPedido) {
+		this.coordenadasPedido = coordenadasPedido;
+	}
 }
 
