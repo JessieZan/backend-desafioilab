@@ -67,8 +67,13 @@ public class PedidoServiceImpl implements IPedidoServices {
 		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
 		
 		if (pedido != null) {
-		Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
+			
+			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
+	
+			entregador.setEmEntrega(true);
+			entregadorDao.save(entregador);
 			pedido.setEntregador(entregador);
+			pedido.setStatus("em_andamento");
 			pedidoDao.save(pedido);
 			return ResponseEntity.ok(pedido);
 		}
