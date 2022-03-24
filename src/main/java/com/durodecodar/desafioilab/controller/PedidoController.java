@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.durodecodar.desafioilab.dao.CoordenadasPedidoDAO;
 import com.durodecodar.desafioilab.model.CoordenadasPedido;
+import com.durodecodar.desafioilab.model.Entregador;
 import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.services.IPedidoServices;
 import com.durodecodar.desafioilab.util.Mensagem;
@@ -35,28 +36,28 @@ public class PedidoController {
 			return (List<Pedido>)service.listaPedidosEmAberto();
 		}
 		
-		@GetMapping("/pedido")
+		@GetMapping("/pedidos")
 		public ResponseEntity<List<Pedido>> listarTodosPedidos(){
 			return service.listarTodosPedidos();
 		}
 		
-		@GetMapping("/pedido/{idPedido}")
+		@GetMapping("/pedidos/{idPedido}")
 		public ResponseEntity<?> buscarPorId(@PathVariable Integer idPedido){
 			return service.buscarPedidoPorId(idPedido);
 		}
 		
-		@PutMapping("/pedido")
+		@PutMapping("/pedidos")
 		public Pedido alterarStatusPedido(@RequestBody Pedido pedidoAtualizado) {
 			return service.atualizarStatusPedido(pedidoAtualizado);
 		}
 		
-		@GetMapping("/pedido/rastrear/{id}")
+		@GetMapping("/pedidos/rastrear/{id}")
 		public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer id) {
 
 			return service.listarCoordenadasPedido(id);
 		}
 
-		@PostMapping("/pedido/cadastrar-coordenada")
+		@PostMapping("/pedidos/cadastrar-coordenada")
 		public ResponseEntity<?> cadastrarCoordenada(@RequestBody List<CoordenadasPedido> listaCoordenadas) {
 
 			listaCoordenadas.forEach(coordenadaPedido -> {
@@ -69,6 +70,12 @@ public class PedidoController {
 				dao.save(coordPed);
 			});
 
+			return ResponseEntity.status(201).build();
+		}
+		
+		@PutMapping("/pedidos/atribuir/{id}")
+		public ResponseEntity<?> atribuirPedidoAoEntregador(@PathVariable Integer id,@RequestBody Entregador entregador) {
+			service.atribuirEntregadorAoPedido(id, entregador.getId());
 			return ResponseEntity.status(201).build();
 		}
 		
