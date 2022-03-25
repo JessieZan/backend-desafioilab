@@ -2,14 +2,13 @@ package com.durodecodar.desafioilab.dao;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO;
-import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.dto.PedidoDTO;
+import com.durodecodar.desafioilab.model.Pedido;
 
 public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 	
@@ -63,8 +62,6 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
  + "Pedido as pedido INNER JOIN  Entregador as entregador ON pedido.entregador.id = entregador.id "
  + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.id = :idPedido")
 	public PedidoDTO buscarPedidoPorId(@Param("idPedido") Integer numero);
-
-
 	
 	public List<PedidoDTO> findByStatusOrderByDataCriacao(String status);
 	
@@ -78,4 +75,5 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 //			" FROM Pedido as pedido INNER JOIN Entregador as entregador on pedido.id = coordenadas.idPedido" +
 //			" WHERE pedido.id = :id")
 //	public void atribuirEntregadorAoPedido(Integer idPedido, Integer entregadorId);
+	
 }

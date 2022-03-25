@@ -49,9 +49,9 @@ public class EntregadorServiceImpl implements IEntregadorService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
-		
+
 	}
 
 }
