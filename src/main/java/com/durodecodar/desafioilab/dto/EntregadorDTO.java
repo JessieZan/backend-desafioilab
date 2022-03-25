@@ -1,5 +1,7 @@
 package com.durodecodar.desafioilab.dto;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.durodecodar.desafioilab.model.Entregador;
 
 public class EntregadorDTO {
@@ -7,14 +9,15 @@ public class EntregadorDTO {
 	private String nome;
 	private String email;
 	private String telefone;
-	
-	
-	public EntregadorDTO(Integer id, String nome, String email, String telefone) {
+	private Boolean emEntrega;
+		
+	public EntregadorDTO(Integer id, String nome, String email, String telefone,Boolean emEntrega) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
+		this.emEntrega = emEntrega;
 	}
 	
 	public EntregadorDTO(Entregador entregador) {
@@ -23,9 +26,21 @@ public class EntregadorDTO {
 		this.nome = entregador.getNome();
 		this.email = entregador.getEmail();
 		this.telefone = entregador.getTelefone();
+		this.emEntrega = entregador.isEmEntrega();
+	}
+	public EntregadorDTO() {
+		super();
+
 	}
 	
-	
+	public Boolean getEmEntrega() {
+		return emEntrega;
+	}
+
+	public void setEmEntrega(Boolean emEntrega) {
+		this.emEntrega = emEntrega;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -52,6 +67,6 @@ public class EntregadorDTO {
 	}
 	
 	public static EntregadorDTO fromEntregador(Entregador e) {
-		return new EntregadorDTO(e.getId(), e.getNome(), e.getEmail(), e.getTelefone());
+		return new EntregadorDTO(e.getId(), e.getNome(), e.getEmail(), e.getTelefone(),e.isEmEntrega());
 	}
 }	

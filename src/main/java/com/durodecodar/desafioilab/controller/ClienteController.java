@@ -13,6 +13,7 @@ import com.durodecodar.desafioilab.dto.ClienteDTO;
 import com.durodecodar.desafioilab.services.IClienteService;
 
 @RestController
+@CrossOrigin("*")
 public class ClienteController {
 	@Autowired
 	private IClienteService service;

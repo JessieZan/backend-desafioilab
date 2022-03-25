@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.durodecodar.desafioilab.dto.PedidoDTO;
 import com.durodecodar.desafioilab.dao.CoordenadasPedidoDAO;
 import com.durodecodar.desafioilab.model.CoordenadasPedido;
 import com.durodecodar.desafioilab.model.Entregador;
@@ -29,23 +30,35 @@ public class PedidoController {
 		
 		@Autowired
 		private CoordenadasPedidoDAO dao;
-
-  
+		
 		@GetMapping("/pedidos/em-aberto")
-		public List<Pedido> recuperarTodos(){
-			return (List<Pedido>)service.listaPedidosEmAberto();
+		public List<PedidoDTO> recuperarTodos(){
+			return (List<PedidoDTO>)service.listaPedidosEmAberto();
 		}
 		
 		@GetMapping("/pedidos")
-		public ResponseEntity<List<Pedido>> listarTodosPedidos(){
-			return service.listarTodosPedidos();
+		public ResponseEntity<List<PedidoDTO>> listarTodosPedidos(){ 
+			return ResponseEntity.ok(service.listarTodosPedidos());
 		}
 		
 		@GetMapping("/pedidos/{idPedido}")
-		public ResponseEntity<?> buscarPorId(@PathVariable Integer idPedido){
-			return service.buscarPedidoPorId(idPedido);
+		public ResponseEntity<?> buscarPedidoPorId(@PathVariable Integer idPedido) {
+			PedidoDTO pedido = service.buscarPedidoPorId(idPedido);
+			System.err.println(pedido);
+			if(pedido != null) {
+				return ResponseEntity.ok(pedido);
+			}
+			return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
 		}
 		
+		
+//		@DeleteMapping("/pedidos/{id}")
+//		public ResponseEntity<?> removerPedido(@PathVariable Integer id){
+//			if (service.removerPedido(id)) {
+//				return ResponseEntity.ok(new Mensagem(1000,"Pedido removido com sucesso"));
+//			}
+//			return ResponseEntity.badRequest().body(new Mensagem(9845,"Erro ao remover pedido"));
+//		}
 		@PutMapping("/pedidos/{id}")
 		public Pedido alterarStatusPedidoAtribuirEntregador(@RequestBody Pedido pedidoAtualizado) {
 			

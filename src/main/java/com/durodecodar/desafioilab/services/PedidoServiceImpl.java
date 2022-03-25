@@ -4,46 +4,62 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.durodecodar.desafioilab.dao.EntregadorDAO;
 import com.durodecodar.desafioilab.dao.PedidoDAO;
-import com.durodecodar.desafioilab.model.Entregador;
+import com.durodecodar.desafioilab.dto.PedidoDTO;
 import com.durodecodar.desafioilab.model.Pedido;
-import com.durodecodar.desafioilab.util.Mensagem;
+import com.durodecodar.desafioilab.model.Entregador;
 
-@Service
-public class PedidoServiceImpl implements IPedidoServices {
+@Component
+@Primary
+public class PedidoServiceImpl implements IPedidoServices{
 
 	@Autowired
 	private PedidoDAO pedidoDao;
 	
 	@Autowired
 	private EntregadorDAO entregadorDao;
-
+	
 	@Override
-	public List<Pedido> listaPedidosEmAberto() {
-		return (List<Pedido>) pedidoDao.findByStatusOrderByDataCriacao("em_aberto");
+	public List<PedidoDTO> listaPedidosEmAberto() {
+		return pedidoDao.listaPedidosEmAberto();
+		//return (List<PedidoDTO>)dao.listaPedidosEmAberto();
 	}
-
-
 	@Override
-	public ResponseEntity<List<Pedido>> listarTodosPedidos() {
-		List<Pedido> pedidos = (List<Pedido>) pedidoDao.findAll();
-		return new ResponseEntity<List<Pedido>>(pedidos, HttpStatus.OK);
+	public List<PedidoDTO> listarTodosPedidos() {
+		List<PedidoDTO> pedidos = pedidoDao.listaTodosPedidos();
+		System.err.println(pedidos);
+		return pedidos ;
 	}
-
+	
 	@Override
-	public ResponseEntity<?> buscarPedidoPorId(Integer idPedido) {
-		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
-		if (pedido != null) {
-			return ResponseEntity.ok(pedido);
-		}
-		return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
+	public PedidoDTO buscarPedidoPorId(Integer idPedido) {
+		return pedidoDao.buscarPedidoPorId(idPedido);
 	}
+	
+	
+//	@Override
+//	public Pedido adicionarPedido(Pedido pedido) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	
+//	@Override
+//	public boolean removerPedido(Integer id) {
+//		try {
+//			dao.deleteById(id);
+//			return true;
+//		} catch (Exception ex) {
+//			return false;
+//		}
+//	}
 
+	
 	@Override
 	public Pedido atualizarStatusPedido(Pedido pedido) {
 		Optional<Pedido> pedidoExiste = pedidoDao.findById(pedido.getId());
@@ -79,5 +95,6 @@ public class PedidoServiceImpl implements IPedidoServices {
 		}
 		return null;
 	}
+
 
 }

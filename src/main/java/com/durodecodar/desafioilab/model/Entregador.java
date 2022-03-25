@@ -34,7 +34,7 @@ public class Entregador {
 	private String senha;
 	
 	@Column(name = "em_entrega")
-	private boolean emEntrega;
+	private Boolean emEntrega;
 	
 	@OneToMany(mappedBy = "entregador")
 	@JsonIgnoreProperties("entregador")
@@ -45,7 +45,7 @@ public class Entregador {
 		super();
 	}
 	
-	public Entregador(Integer id, String nome, String email, String telefone, String senha, boolean emEntrega,
+	public Entregador(Integer id, String nome, String email, String telefone, String senha, Boolean emEntrega,
 			List<Pedido> listaDePedidos) {
 		super();
 		this.id = id;
@@ -107,11 +107,11 @@ public class Entregador {
 		this.senha = senha;
 	}
 
-	public boolean getEmEntrega() {
+	public Boolean isEmEntrega() {
 		return emEntrega;
 	}
 
-	public void setEmEntrega(boolean emEntrega) {
+	public void setEmEntrega(Boolean emEntrega) {
 		this.emEntrega = emEntrega;
 	}
 

@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.durodecodar.desafioilab.dto.EntregadorLoginDTO;
 import com.durodecodar.desafioilab.security.Token;
+import com.durodecodar.desafioilab.dto.EntregadorLoginDTO;
 import com.durodecodar.desafioilab.services.IEntregadorService;
 
 @RestController
