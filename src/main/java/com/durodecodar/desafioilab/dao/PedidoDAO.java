@@ -30,39 +30,37 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 	
 	@Query("SELECT new "
 		     + "com.durodecodar.desafioilab.dto.PedidoDTO(pedido.id,"
-    + "                                          pedido.dataCriacao,"
-    + "                                          pedido.valorTotal,"
-    + "                                          pedido.status,"
-    + "                                          entregador.id,"
-    + "                                          entregador.nome,"
-    + "                                          entregador.email,"
-    + "                                          entregador.telefone,"
-    + "                                          entregador.emEntrega,"
-    + "											 cliente.id,"
-    + "											 cliente.nome)"
-	 + " FROM "
-    + "Pedido as pedido "
-    + "INNER JOIN com.durodecodar.desafioilab.dto.EntregadorDTO as entregador ON pedido.status ='em_aberto' "
-    + "INNER JOIN com.durodecodar.desafioilab.dto.ClienteDTO as cliente")
+  + "                                          pedido.dataCriacao,"
+  + "                                          pedido.valorTotal,"
+  + "                                          pedido.status,"
+  + "                                          entregador.id,"
+  + "                                          entregador.nome,"
+  + "                                          entregador.email,"
+  + "                                          entregador.telefone,"
+  + "                                          entregador.emEntrega,"
+  + "										   cliente.id,"
+  + "										   cliente.nome)"
+  + " FROM "
+  + "Pedido as pedido INNER JOIN  Entregador as entregador ON pedido.entregador.id = entregador.id "
+  + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.status = 'em_aberto'")
 	public List<PedidoDTO> listaPedidosEmAberto();
 	
 	@Query("SELECT new "
 		     + "com.durodecodar.desafioilab.dto.PedidoDTO(pedido.id,"
-		     + "                                          pedido.dataCriacao,"
-		     + "                                          pedido.valorTotal,"
-		     + "                                          pedido.status,"
-		     + "                                          entregador.id,"
-		     + "                                          entregador.nome,"
-		     + "                                          entregador.email,"
-		     + "                                          entregador.telefone,"
-		     + "                                          entregador.emEntrega,"
-		     + "										  cliente.id,"
-		     + "										  cliente.nome)"
-		     + " FROM "
-		     + "Pedido as pedido  "
-		     + "INNER JOIN com.durodecodar.desafioilab.dto.EntregadorDTO as entregador ON pedido.entregador.id = entregador.id"
-		     + "INNER JOIN com.durodecodar.desafioilab.dto.ClienteDTO as cliente ON pedido.cliente.id = cliente.id AND pedido.id = :id")
-	public PedidoDTO buscarPedidoPorId(@Param("id") Integer numero);
+ + "                                          pedido.dataCriacao,"
+ + "                                          pedido.valorTotal,"
+ + "                                          pedido.status,"
+ + "                                          entregador.id,"
+ + "                                          entregador.nome,"
+ + "                                          entregador.email,"
+ + "                                          entregador.telefone,"
+ + "                                          entregador.emEntrega,"
+ + "										  cliente.id,"
+ + "										  cliente.nome)"
+ + " FROM "
+ + "Pedido as pedido INNER JOIN  Entregador as entregador ON pedido.entregador.id = entregador.id "
+ + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.id = :idPedido")
+	public PedidoDTO buscarPedidoPorId(@Param("idPedido") Integer numero);
 
 
 }

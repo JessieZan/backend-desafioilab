@@ -32,8 +32,8 @@ public class PedidoServiceImpl implements IPedidoServices{
 	}
 	
 	@Override
-	public PedidoDTO buscarPedidoPorId(Integer id) {
-		return dao.buscarPedidoPorId(id);
+	public PedidoDTO buscarPedidoPorId(Integer idPedido) {
+		return dao.buscarPedidoPorId(idPedido);
 	}
 	
 	

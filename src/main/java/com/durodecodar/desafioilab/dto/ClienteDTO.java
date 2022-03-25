@@ -16,6 +16,9 @@ public class ClienteDTO {
 		this.id = cliente.getId();
 		this.nome = cliente.getNome();
 	}
+	public ClienteDTO() {
+		super();
+	}
 	public Integer getId() {
 		return id;
 	}

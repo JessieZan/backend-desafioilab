@@ -2,8 +2,6 @@ package com.durodecodar.desafioilab.dto;
 
 import java.time.LocalDateTime;
 
-import com.durodecodar.desafioilab.model.Cliente;
-import com.durodecodar.desafioilab.model.Entregador;
 import com.durodecodar.desafioilab.model.Pedido;
 
 public class PedidoDTO {
@@ -24,7 +22,10 @@ public class PedidoDTO {
 		this.entregador = entregador;
 		this.cliente = cliente;
 	}
-	
+	public PedidoDTO() {
+		super();
+		System.out.println("entrei no construtor vazio");
+	}
 	public PedidoDTO(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status,
 			Integer idEntregador,String nomeEntegador,String emailEntegador, String telefoneEntegador, Boolean emEntrega,
 			Integer idCliente, String nomeCliente) {
@@ -33,11 +34,13 @@ public class PedidoDTO {
 		this.dataCriacao = dataCriacao;
 		this.valorTotal = valorTotal;
 		this.status = status;
+		this.entregador = new EntregadorDTO();
 		this.entregador.setId(idEntregador);
 		this.entregador.setNome(nomeEntegador);
 		this.entregador.setEmail(emailEntegador);
 		this.entregador.setTelefone(telefoneEntegador);
 		this.entregador.setEmEntrega(emEntrega);
+		this.cliente = new ClienteDTO();
 		this.cliente.setId(idCliente);
 		this.cliente.setNome(nomeCliente);
 	}

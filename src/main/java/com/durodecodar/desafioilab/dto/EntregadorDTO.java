@@ -28,7 +28,10 @@ public class EntregadorDTO {
 		this.telefone = entregador.getTelefone();
 		this.emEntrega = entregador.isEmEntrega();
 	}
-	
+	public EntregadorDTO() {
+		super();
+
+	}
 	
 	public Boolean getEmEntrega() {
 		return emEntrega;

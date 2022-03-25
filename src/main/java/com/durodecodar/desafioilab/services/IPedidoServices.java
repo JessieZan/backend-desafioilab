@@ -14,7 +14,7 @@ public interface IPedidoServices {
 //	public boolean removerPedido(Integer id);
 //	public ResponseEntity<?> buscarPedidoPorId(@PathVariable Integer idPedido);
 	public List<PedidoDTO> listarTodosPedidos();
-	public PedidoDTO buscarPedidoPorId(@PathVariable Integer idPedido);
+	public PedidoDTO buscarPedidoPorId(Integer idPedido);
 	public List<PedidoDTO> listaPedidosEmAberto();
 	
 }
