@@ -19,7 +19,7 @@ public class PedidoServiceImpl implements IPedidoServices {
 
 	@Autowired
 	private PedidoDAO pedidoDao;
-	
+
 	@Autowired
 	private EntregadorDAO entregadorDao;
 
@@ -27,7 +27,6 @@ public class PedidoServiceImpl implements IPedidoServices {
 	public List<Pedido> listaPedidosEmAberto() {
 		return (List<Pedido>) pedidoDao.findByStatusOrderByDataCriacao("em_aberto");
 	}
-
 
 	@Override
 	public ResponseEntity<List<Pedido>> listarTodosPedidos() {
@@ -61,15 +60,14 @@ public class PedidoServiceImpl implements IPedidoServices {
 		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
 	}
 
-
 	@Override
 	public ResponseEntity<?> atribuirEntregadorAoPedido(Integer idPedido, Integer entregadorId) {
 		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
-		
+
 		if (pedido != null) {
-			
+
 			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
-	
+
 			entregador.setEmEntrega(true);
 			entregadorDao.save(entregador);
 			pedido.setEntregador(entregador);

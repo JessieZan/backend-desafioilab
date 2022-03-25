@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import com.durodecodar.desafioilab.dao.EntregadorDAO;
 import com.durodecodar.desafioilab.dto.EntregadorDTO;
@@ -49,9 +48,9 @@ public class EntregadorServiceImpl implements IEntregadorService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
-		
+
 	}
 
 }

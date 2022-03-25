@@ -18,14 +18,14 @@ public class EntregadorController {
 
 	@Autowired
 	private IEntregadorService service;
-	
+
 	@GetMapping("/entregadores")
-	public  ResponseEntity<List<EntregadorDTO>> retornarTodos(){
+	public ResponseEntity<List<EntregadorDTO>> retornarTodos() {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
-	
+
 	@GetMapping("/entregadores/{id}")
-	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer id){
+	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer id) {
 		EntregadorDTO res = service.recuperarPeloId(id);
 		if (res != null) {
 			return ResponseEntity.ok(res);

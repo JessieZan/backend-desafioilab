@@ -16,43 +16,40 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "pedido")
 public class Pedido {
-	
+
 	@Id
-	@Column(name="id",  nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "data_criacao")
 	private LocalDateTime dataCriacao;
-	
+
 	@Column(name = "valor_total", nullable = false)
 	private Integer valorTotal;
-	
+
 	@Column(name = "status", nullable = false, length = 10)
 	private String status;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_entregador")
 	@JsonIgnoreProperties("listaDePedidos")
 	private Entregador entregador;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
-	
+
 	private String coordenadasPedido;
 
 	public Pedido(String coordenadasPedido) {
 		this.coordenadasPedido = coordenadasPedido;
-	}	
-	
-	public Pedido() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	
-	
+	public Pedido() {
+		super();
+	}
+
 	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status) {
 		super();
 		this.dataCriacao = dataCriacao;
@@ -60,14 +57,8 @@ public class Pedido {
 		this.status = status;
 	}
 
-
-
-	public Pedido(
-			Integer id, LocalDateTime dataCriacao, 
-			Integer valorTotal, String status, 
-			Integer numeroEnt , String nomeEnt, 
-			String emailEnt, String telefoneEnt, 
-			String senhaEnt, boolean emEntrega ) {
+	public Pedido(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, Integer numeroEnt,
+			String nomeEnt, String emailEnt, String telefoneEnt, String senhaEnt, boolean emEntrega) {
 		super();
 		this.id = id;
 		this.dataCriacao = dataCriacao;
@@ -80,7 +71,6 @@ public class Pedido {
 		this.entregador.setTelefone(telefoneEnt);
 		this.entregador.setSenha(senhaEnt);
 		this.entregador.setEmEntrega(emEntrega);
-
 
 	}
 
@@ -137,6 +127,4 @@ public class Pedido {
 		this.entregador = entregador;
 	}
 
-	
 }
-
