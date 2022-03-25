@@ -1,6 +1,7 @@
 package com.durodecodar.desafioilab.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -8,32 +9,37 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.durodecodar.desafioilab.dao.EntregadorDAO;
 import com.durodecodar.desafioilab.dao.PedidoDAO;
 import com.durodecodar.desafioilab.dto.PedidoDTO;
+import com.durodecodar.desafioilab.model.Pedido;
+import com.durodecodar.desafioilab.model.Entregador;
 
-//@Service
 @Component
 @Primary
 public class PedidoServiceImpl implements IPedidoServices{
 
 	@Autowired
-	private PedidoDAO dao;
+	private PedidoDAO pedidoDao;
+	
+	@Autowired
+	private EntregadorDAO entregadorDao;
 	
 	@Override
 	public List<PedidoDTO> listaPedidosEmAberto() {
-		return dao.listaPedidosEmAberto();
+		return pedidoDao.listaPedidosEmAberto();
 		//return (List<PedidoDTO>)dao.listaPedidosEmAberto();
 	}
 	@Override
 	public List<PedidoDTO> listarTodosPedidos() {
-		List<PedidoDTO> pedidos = dao.listaTodosPedidos();
+		List<PedidoDTO> pedidos = pedidoDao.listaTodosPedidos();
 		System.err.println(pedidos);
 		return pedidos ;
 	}
 	
 	@Override
 	public PedidoDTO buscarPedidoPorId(Integer idPedido) {
-		return dao.buscarPedidoPorId(idPedido);
+		return pedidoDao.buscarPedidoPorId(idPedido);
 	}
 	
 	
@@ -53,26 +59,42 @@ public class PedidoServiceImpl implements IPedidoServices{
 //		}
 //	}
 
-
-//	@Override
-//	public List<PedidoDTO> listarTodosPedidos() {
-//		return dao.listaTodosPedidos(); 
-////		List<PedidoDTO> pedidos = (List<Pedido>) dao.listaTodosPedidos();
-////		return pedidos;
-//	}
 	
+	@Override
+	public Pedido atualizarStatusPedido(Pedido pedido) {
+		Optional<Pedido> pedidoExiste = pedidoDao.findById(pedido.getId());
 
-//	@Override
-//	public ResponseEntity<?> buscarPedidoPorId(Integer idPedido) {
-//		Pedido pedido = dao.findById(idPedido).orElse(null);
-//		if(pedido != null) {
-//			return ResponseEntity.ok(pedido);
-//		}
-//		return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
-//	}
-	
-	
+		if (pedidoExiste.isEmpty()) {
+			return null;
+		}
+		pedido.setStatus("em_andamento");
+		pedidoDao.save(pedido);
+		return pedido;
 
+	}
+
+	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
+		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
+	}
+
+
+	@Override
+	public ResponseEntity<?> atribuirEntregadorAoPedido(Integer idPedido, Integer entregadorId) {
+		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
+		
+		if (pedido != null) {
+			
+			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
+	
+			entregador.setEmEntrega(true);
+			entregadorDao.save(entregador);
+			pedido.setEntregador(entregador);
+			pedido.setStatus("em_andamento");
+			pedidoDao.save(pedido);
+			return ResponseEntity.ok(pedido);
+		}
+		return null;
+	}
 
 
 }
