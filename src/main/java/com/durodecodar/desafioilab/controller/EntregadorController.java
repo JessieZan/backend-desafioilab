@@ -3,7 +3,6 @@ package com.durodecodar.desafioilab.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +18,14 @@ public class EntregadorController {
 
 	@Autowired
 	private IEntregadorService service;
-	
+
 	@GetMapping("/entregadores")
-	public  ResponseEntity<List<EntregadorDTO>> retornarTodos(){
+	public ResponseEntity<List<EntregadorDTO>> retornarTodos() {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
-	
+
 	@GetMapping("/entregadores/{id}")
-	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer id){
+	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer id) {
 		EntregadorDTO res = service.recuperarPeloId(id);
 		if (res != null) {
 			return ResponseEntity.ok(res);

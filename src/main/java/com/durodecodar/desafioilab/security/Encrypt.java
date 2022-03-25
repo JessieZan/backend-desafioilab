@@ -10,6 +10,7 @@ public class Encrypt {
 	public static String encrypt(String original) throws Exception {
 
 		String strMinhaChave = "ch@v3cr1pt0gr@f@d@+32b1t$d3s@f10";
+
 		Key minhaChave = new SecretKeySpec(strMinhaChave.getBytes(), "AES");
 
 		Cipher cipher = Cipher.getInstance("AES");
@@ -23,6 +24,7 @@ public class Encrypt {
 		byte[] passwordEncrypt = originalCripto.getBytes();
 
 		StringBuilder cryptoHex = new StringBuilder();
+
 		for (byte b : passwordEncrypt) {
 			cryptoHex.append(Integer.toHexString(b));
 		}

@@ -8,7 +8,9 @@ import com.durodecodar.desafioilab.security.Token;
 
 public interface IEntregadorService {
 	public List<EntregadorDTO> recuperarTodos();
+
 	public EntregadorDTO recuperarPeloId(Integer id);
+
 	public Token gerarTokenEntregador(EntregadorLoginDTO dadosLogin);
 
 }

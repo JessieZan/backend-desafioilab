@@ -17,23 +17,21 @@ import com.durodecodar.desafioilab.services.IClienteService;
 public class ClienteController {
 	@Autowired
 	private IClienteService service;
-	
+
 	@GetMapping("/clientes")
-	public ResponseEntity<List<ClienteDTO>> recuperarTodos(){
+	public ResponseEntity<List<ClienteDTO>> recuperarTodos() {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
-	
+
 	@GetMapping("/clientes/{id}")
-	public ResponseEntity<ClienteDTO> recuperarPeloId(@PathVariable Integer id){
+	public ResponseEntity<ClienteDTO> recuperarPeloId(@PathVariable Integer id) {
 		ClienteDTO res = service.recuperarPeloId(id);
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}
 		return ResponseEntity.notFound().build();
-	}	
-	
-	
-	
+	}
+
 //	@Autowired
 //	private ClienteDAO dao;
 //	

@@ -6,5 +6,6 @@ import com.durodecodar.desafioilab.dto.ClienteDTO;
 
 public interface IClienteService {
 	public List<ClienteDTO> recuperarTodos();
+
 	public ClienteDTO recuperarPeloId(Integer id);
 }

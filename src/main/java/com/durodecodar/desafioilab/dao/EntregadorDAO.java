@@ -29,6 +29,7 @@ public interface EntregadorDAO extends CrudRepository<Entregador, Integer> {
 			+ "	 entregador.emEntrega)"
 			+ "FROM Entregador as entregador WHERE entregador.id = :id")
 	public EntregadorDTO recuperarPeloId(@Param("id") Integer numero);
+	
 	public Entregador findByEmailOrTelefone(String email, String telefone);
 
 }
