@@ -31,6 +31,11 @@ public class Pedido {
 	@Column(name = "status", nullable = false, length = 10)
 	private String status;
 
+	
+	@Column(name = "endereco_entrega", nullable = false, columnDefinition = "TEXT")
+	private String enderecoEntrega;
+	
+
 	@ManyToOne
 	@JoinColumn(name = "id_entregador")
 	@JsonIgnoreProperties("listaDePedidos")
@@ -51,20 +56,35 @@ public class Pedido {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status) {
+
+	
+	
+	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status,String enderecoEntrega) {
+
 		super();
 		this.dataCriacao = dataCriacao;
 		this.valorTotal = valorTotal;
 		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
-	public Pedido(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, Integer numeroEnt,
-			String nomeEnt, String emailEnt, String telefoneEnt, String senhaEnt, boolean emEntrega) {
+
+
+
+	public Pedido(
+			Integer id, LocalDateTime dataCriacao, 
+			Integer valorTotal, String status, 
+			String enderecoEntrega,
+			Integer numeroEnt , String nomeEnt, 
+			String emailEnt, String telefoneEnt, 
+			String senhaEnt, boolean emEntrega ) {
+
 		super();
 		this.id = id;
 		this.dataCriacao = dataCriacao;
 		this.valorTotal = valorTotal;
 		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
 		this.entregador = new Entregador();
 		this.entregador.setId(numeroEnt);
 		this.entregador.setNome(nomeEnt);
@@ -127,5 +147,12 @@ public class Pedido {
 	public void setEntregador(Entregador entregador) {
 		this.entregador = entregador;
 	}
+	
+	public String getEnderecoEntrega() {
+			return enderecoEntrega;
+	}
+	public void setEnderecoEntrega(String enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
+}
 
 }

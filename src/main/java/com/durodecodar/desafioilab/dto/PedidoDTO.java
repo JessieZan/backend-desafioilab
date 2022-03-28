@@ -9,16 +9,20 @@ public class PedidoDTO {
 	private LocalDateTime dataCriacao;
 	private Integer valorTotal;
 	private String status;
+	private String enderecoEntrega;
 	private EntregadorDTO entregador;
 	private ClienteDTO cliente;
 
-	public PedidoDTO(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, EntregadorDTO entregador,
+		
+	public PedidoDTO(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status,String enderecoEntrega, EntregadorDTO entregador,
+
 			ClienteDTO cliente) {
 		super();
 		this.id = id;
 		this.dataCriacao = dataCriacao;
 		this.valorTotal = valorTotal;
 		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
 		this.entregador = entregador;
 		this.cliente = cliente;
 	}
@@ -28,14 +32,16 @@ public class PedidoDTO {
 		System.out.println("entrei no construtor vazio");
 	}
 
-	public PedidoDTO(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, Integer idEntregador,
-			String nomeEntegador, String emailEntegador, String telefoneEntegador, Boolean emEntrega, Integer idCliente,
-			String nomeCliente) {
+	public PedidoDTO(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, String enderecoEntrega,
+			Integer idEntregador,String nomeEntegador,String emailEntegador, String telefoneEntegador, Boolean emEntrega,
+			Integer idCliente, String nomeCliente) {
+
 		super();
 		this.id = id;
 		this.dataCriacao = dataCriacao;
 		this.valorTotal = valorTotal;
 		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
 		this.entregador = new EntregadorDTO();
 		this.entregador.setId(idEntregador);
 		this.entregador.setNome(nomeEntegador);
@@ -48,9 +54,10 @@ public class PedidoDTO {
 	}
 
 	public static PedidoDTO fromPedido(Pedido p) {
-		return new PedidoDTO(p.getId(), p.getDataCriacao(), p.getValorTotal(), p.getStatus(), p.getEntregador().getId(),
-				p.getEntregador().getNome(), p.getEntregador().getEmail(), p.getEntregador().getTelefone(),
-				p.getEntregador().isEmEntrega(), p.getCliente().getId(), p.getCliente().getNome());
+
+		return new PedidoDTO(p.getId(), p.getDataCriacao(), p.getValorTotal(), p.getStatus(),p.getEnderecoEntrega(), p.getEntregador().getId(),
+				p.getEntregador().getNome(),p.getEntregador().getEmail(),p.getEntregador().getTelefone(),p.getEntregador().isEmEntrega(),p.getCliente().getId(),p.getCliente().getNome());
+
 	}
 
 	public Integer getId() {
@@ -83,6 +90,13 @@ public class PedidoDTO {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getEnderecoEntrega() {
+		return enderecoEntrega;
+	}
+	public void setEnderecoEntrega(String enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
 	public EntregadorDTO getEntregador() {

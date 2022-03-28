@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/login")
 		.permitAll()
+
 		.anyRequest().authenticated().and().cors();
 
 		httpSec.addFilterBefore(new Filters(), UsernamePasswordAuthenticationFilter.class);
