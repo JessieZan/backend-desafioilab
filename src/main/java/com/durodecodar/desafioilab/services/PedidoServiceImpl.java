@@ -59,7 +59,7 @@ public class PedidoServiceImpl implements IPedidoServices {
 //	}
 
 	@Override
-	public Pedido atualizarStatusPedido(Pedido pedido) {
+	public Pedido atualizarStatusPedidoEmAndamento(Pedido pedido) {
 		Optional<Pedido> pedidoExiste = pedidoDao.findById(pedido.getId());
 
 		if (pedidoExiste.isEmpty()) {
@@ -87,6 +87,42 @@ public class PedidoServiceImpl implements IPedidoServices {
 			entregadorDao.save(entregador);
 			pedido.setEntregador(entregador);
 			pedido.setStatus("em_andamento");
+			pedidoDao.save(pedido);
+			return ResponseEntity.ok(pedido);
+		}
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<?> atualizarStatusPedidoCancelado(Integer idPedido, Integer entregadorId) {
+		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
+
+		if (pedido != null) {
+
+			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
+
+			entregador.setEmEntrega(false);
+			entregadorDao.save(entregador);
+			pedido.setEntregador(entregador);
+			pedido.setStatus("em_aberto");
+			pedidoDao.save(pedido);
+			return ResponseEntity.ok(pedido);
+		}
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<?> atualizarStatusPedidoFinalizado(Integer idPedido, Integer entregadorId) {
+		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
+
+		if (pedido != null) {
+
+			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
+
+			entregador.setEmEntrega(false);
+			entregadorDao.save(entregador);
+			pedido.setEntregador(entregador);
+			pedido.setStatus("concluido");
 			pedidoDao.save(pedido);
 			return ResponseEntity.ok(pedido);
 		}

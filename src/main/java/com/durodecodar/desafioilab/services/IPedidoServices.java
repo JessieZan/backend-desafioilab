@@ -18,7 +18,9 @@ public interface IPedidoServices {
 
 	public List<PedidoDTO> listaPedidosEmAberto();
 
-	public Pedido atualizarStatusPedido(Pedido pedido);
+	public Pedido atualizarStatusPedidoEmAndamento(Pedido pedido);
+	public ResponseEntity<?> atualizarStatusPedidoCancelado(Integer idPedido, Integer entregadorId);
+	public ResponseEntity<?> atualizarStatusPedidoFinalizado(Integer idPedido, Integer entregadorId);
 
 	public ResponseEntity<?> atribuirEntregadorAoPedido(Integer pedidoId, Integer entregadorId);
 //	List<Pedido> listaPedidosTESTANDO();
