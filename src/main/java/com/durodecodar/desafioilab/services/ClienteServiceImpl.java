@@ -15,10 +15,9 @@ public class ClienteServiceImpl implements IClienteService {
 	@Autowired
 	private ClienteDAO dao;
 
-	
 	@Override
 	public List<ClienteDTO> recuperarTodos() {
-		return dao.recuperarTodos(); 
+		return dao.recuperarTodos();
 	}
 
 	@Override

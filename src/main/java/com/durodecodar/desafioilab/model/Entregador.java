@@ -15,36 +15,35 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "entregador")
 public class Entregador {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
-	
+
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
-	
+
 	@Column(name = "email", nullable = false, length = 50, unique = true)
 	private String email;
-	
-	@Column(name = "telefone", nullable = false, length = 12, unique = true )
+
+	@Column(name = "telefone", nullable = false, length = 12, unique = true)
 	private String telefone;
-	
+
 	@Column(name = "senha", nullable = false, columnDefinition = "TEXT")
 	private String senha;
-	
+
 	@Column(name = "em_entrega")
 	private Boolean emEntrega;
-	
+
 	@OneToMany(mappedBy = "entregador")
 	@JsonIgnoreProperties("entregador")
 	private List<Pedido> listaDePedidos;
-	
 
 	public Entregador() {
 		super();
 	}
-	
+
 	public Entregador(Integer id, String nome, String email, String telefone, String senha, Boolean emEntrega,
 			List<Pedido> listaDePedidos) {
 		super();
@@ -57,8 +56,6 @@ public class Entregador {
 		this.listaDePedidos = listaDePedidos;
 	}
 
-
-
 	public List<Pedido> getListaDePedidos() {
 		return listaDePedidos;
 	}
@@ -66,11 +63,11 @@ public class Entregador {
 	public void setListaDePedidos(List<Pedido> listaDePedidos) {
 		this.listaDePedidos = listaDePedidos;
 	}
-	
+
 	public Integer getId() {
-			return id;
+		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -115,5 +112,4 @@ public class Entregador {
 		this.emEntrega = emEntrega;
 	}
 
-	
 }
