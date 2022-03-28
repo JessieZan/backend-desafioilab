@@ -3,6 +3,7 @@ package com.durodecodar.desafioilab.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.web.bind.annotation.DeleteMapping;
@@ -59,12 +60,24 @@ public class PedidoController {
 //			return ResponseEntity.badRequest().body(new Mensagem(9845,"Erro ao remover pedido"));
 //		}
 
-	@PutMapping("/pedidos/{id}")
+	@PutMapping("/pedidos/em-aberto/{id}")
 	public Pedido alterarStatusPedidoAtribuirEntregador(@RequestBody Pedido pedidoAtualizado) {
 
-		return service.atualizarStatusPedido(pedidoAtualizado);
+		return service.atualizarStatusPedidoEmAndamento(pedidoAtualizado);
 	}
-
+	
+	@PutMapping("/pedidos/cancelado/{id}")
+	public ResponseEntity<?> alterarStatusPedidoCancelado(@PathVariable Integer id, @RequestBody Entregador entregador) {
+		service.atualizarStatusPedidoCancelado(id, entregador.getId());
+		return ResponseEntity.status(201).build();
+	}	
+	
+	@PutMapping("/pedidos/finalizado/{id}")
+	public ResponseEntity<?> alterarStatusPedidoFinalizado(@PathVariable Integer id, @RequestBody Entregador entregador) {
+		service.atualizarStatusPedidoFinalizado(id, entregador.getId());
+		return ResponseEntity.status(201).build();
+	}	
+		
 	@GetMapping("/pedidos/rastrear/{id}")
 	public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer id) {
 
