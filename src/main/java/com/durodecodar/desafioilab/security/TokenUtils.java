@@ -42,6 +42,7 @@ public class TokenUtils {
 				.compact();
 		
 		return PREFIX + token;
+		
 	}
 
 	private static boolean isExpirationValid(Date expiration) {
