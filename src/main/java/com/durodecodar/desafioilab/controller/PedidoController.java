@@ -85,17 +85,10 @@ public class PedidoController {
 	}
 
 	@PostMapping("/pedidos/cadastrar-coordenada")
-	public ResponseEntity<?> cadastrarCoordenada(@RequestBody List<CoordenadasPedido> listaCoordenadas) {
+	public ResponseEntity<?> cadastrarCoordenada(@RequestBody CoordenadasPedido listaCoordenadas) {
 
-		listaCoordenadas.forEach(coordenadaPedido -> {
-			CoordenadasPedido coordPed = new CoordenadasPedido(coordenadaPedido.getIdPedido(),
-					coordenadaPedido.getIdEntregador(), coordenadaPedido.getTimestamp(),
-					coordenadaPedido.getCoordenada());
-
-			dao.save(coordPed);
-		});
-
-		return ResponseEntity.status(201).build();
+			dao.save(listaCoordenadas);
+			return ResponseEntity.status(201).build();
 	}
 
 	@PutMapping("/pedidos/atribuir/{id}")
