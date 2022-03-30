@@ -27,7 +27,7 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
    + "										    cliente.nome)"
    + " FROM "
    + "Pedido as pedido INNER JOIN  Entregador as entregador ON pedido.entregador.id = entregador.id "
-   + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id")
+   + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id ORDER BY pedido.id")
 	public List<PedidoDTO> listaTodosPedidos();
 	
 	@Query("SELECT new "
@@ -45,8 +45,8 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
   + "										   cliente.nome)"
   + " FROM "
   + "Pedido as pedido INNER JOIN  Entregador as entregador ON pedido.entregador.id = entregador.id "
-  + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.status = 'em_aberto'")
-	public List<PedidoDTO> listaPedidosEmAberto();
+  + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.status = :currentStatus ORDER BY pedido.id")
+	public List<PedidoDTO> listaPedidosEmAberto(@Param("currentStatus") String status);
 	
 	@Query("SELECT new "
 		     + "com.durodecodar.desafioilab.dto.PedidoDTO(pedido.id,"
@@ -63,7 +63,7 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
  + "										  cliente.nome)"
  + " FROM "
  + "Pedido as pedido INNER JOIN  Entregador as entregador ON pedido.entregador.id = entregador.id "
- + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.id = :idPedido")
+ + "INNER JOIN Cliente as cliente ON pedido.cliente.id = cliente.id WHERE pedido.id = :idPedido ORDER BY pedido.id")
 	public PedidoDTO buscarPedidoPorId(@Param("idPedido") Integer numero);
 	
 	public List<PedidoDTO> findByStatusOrderByDataCriacao(String status);
@@ -71,7 +71,7 @@ public interface PedidoDAO extends CrudRepository<Pedido, Integer>{
 	@Query("SELECT new com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO(pedido.idPedido, coordenadas.coordenada, " +
 			"coordenadas.timestamp)" +
 			" FROM CoordenadasPedido as pedido INNER JOIN CoordenadasPedido as coordenadas on pedido.id = coordenadas.idPedido" +
-			" WHERE pedido.id = :id")
+			" WHERE pedido.id = :id ORDER BY pedido.id")
 	List<CoordenadasPedidoDTO> listarCoordenadasPedido(@Param("id") Integer id);
 	
 //	@Query("UPDATE new com.durodecodar.desafioilab.dto.PedidoDTO(pedido.idPedido, pedido.entregadorId, " +

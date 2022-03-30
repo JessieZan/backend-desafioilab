@@ -25,14 +25,13 @@ public class PedidoServiceImpl implements IPedidoServices {
 	private EntregadorDAO entregadorDao;
 
 	@Override
-	public List<PedidoDTO> listaPedidosEmAberto() {
-		return pedidoDao.listaPedidosEmAberto();
+	public List<PedidoDTO> listaPedidosEmAberto(String status) {
+		return pedidoDao.listaPedidosEmAberto(status);
 	}
 
 	@Override
 	public List<PedidoDTO> listarTodosPedidos() {
 		List<PedidoDTO> pedidos = pedidoDao.listaTodosPedidos();
-		System.err.println(pedidos);
 		return pedidos;
 	}
 
@@ -41,63 +40,34 @@ public class PedidoServiceImpl implements IPedidoServices {
 		return pedidoDao.buscarPedidoPorId(idPedido);
 	}
 
-
 	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
 		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
 	}
 
 	@Override
-	public ResponseEntity<?> atribuirEntregadorAoPedido(Integer idPedido, Integer entregadorId) {
-		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
+	public ResponseEntity<?> alterarStatusGenerico(Integer id, String acao, Integer idEntregador) {
+		Pedido pedido = pedidoDao.findById(id).orElse(null);
+		Entregador entregador = entregadorDao.findById(idEntregador).orElse(null);
 
-		if (pedido != null) {
+		if (pedido == null) {
+			return ResponseEntity.notFound().build();
+		}
 
-			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
-
+		if (acao.equals("atribuir")) {
 			entregador.setEmEntrega(true);
-			entregadorDao.save(entregador);
-			pedido.setEntregador(entregador);
 			pedido.setStatus("em_andamento");
-			pedidoDao.save(pedido);
-			return ResponseEntity.ok(pedido);
-		}
-		return null;
-	}
-
-	@Override
-	public ResponseEntity<?> atualizarStatusPedidoCancelado(Integer idPedido, Integer entregadorId) {
-		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
-
-		if (pedido != null) {
-
-			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
-
+		} else if (acao.equals("cancelar")) {
 			entregador.setEmEntrega(false);
-			entregadorDao.save(entregador);
-			pedido.setEntregador(entregador);
 			pedido.setStatus("em_aberto");
-			pedidoDao.save(pedido);
-			return ResponseEntity.ok(pedido);
-		}
-		return null;
-	}
-
-	@Override
-	public ResponseEntity<?> atualizarStatusPedidoFinalizado(Integer idPedido, Integer entregadorId) {
-		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
-
-		if (pedido != null) {
-
-			Entregador entregador = entregadorDao.findById(entregadorId).orElse(null);
-
+		} else if (acao.equals("finalizar")) {
 			entregador.setEmEntrega(false);
-			entregadorDao.save(entregador);
-			pedido.setEntregador(entregador);
 			pedido.setStatus("concluido");
-			pedidoDao.save(pedido);
-			return ResponseEntity.ok(pedido);
 		}
-		return null;
+
+		entregadorDao.save(entregador);
+		pedido.setEntregador(entregador);
+		pedidoDao.save(pedido);
+		return ResponseEntity.ok(pedido);
 	}
 
 }
