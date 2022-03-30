@@ -52,20 +52,6 @@ public class PedidoController {
 		return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
 	}
 
-//		@DeleteMapping("/pedidos/{id}")
-//		public ResponseEntity<?> removerPedido(@PathVariable Integer id){
-//			if (service.removerPedido(id)) {
-//				return ResponseEntity.ok(new Mensagem(1000,"Pedido removido com sucesso"));
-//			}
-//			return ResponseEntity.badRequest().body(new Mensagem(9845,"Erro ao remover pedido"));
-//		}
-
-	@PutMapping("/pedidos/em-aberto/{id}")
-	public Pedido alterarStatusPedidoAtribuirEntregador(@RequestBody Pedido pedidoAtualizado) {
-
-		return service.atualizarStatusPedidoEmAndamento(pedidoAtualizado);
-	}
-	
 	@PutMapping("/pedidos/cancelado/{id}")
 	public ResponseEntity<?> alterarStatusPedidoCancelado(@PathVariable Integer id, @RequestBody Entregador entregador) {
 		service.atualizarStatusPedidoCancelado(id, entregador.getId());

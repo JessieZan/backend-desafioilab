@@ -27,7 +27,6 @@ public class PedidoServiceImpl implements IPedidoServices {
 	@Override
 	public List<PedidoDTO> listaPedidosEmAberto() {
 		return pedidoDao.listaPedidosEmAberto();
-		// return (List<PedidoDTO>)dao.listaPedidosEmAberto();
 	}
 
 	@Override
@@ -42,34 +41,6 @@ public class PedidoServiceImpl implements IPedidoServices {
 		return pedidoDao.buscarPedidoPorId(idPedido);
 	}
 
-//	@Override
-//	public Pedido adicionarPedido(Pedido pedido) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	@Override
-//	public boolean removerPedido(Integer id) {
-//		try {
-//			dao.deleteById(id);
-//			return true;
-//		} catch (Exception ex) {
-//			return false;
-//		}
-//	}
-
-	@Override
-	public Pedido atualizarStatusPedidoEmAndamento(Pedido pedido) {
-		Optional<Pedido> pedidoExiste = pedidoDao.findById(pedido.getId());
-
-		if (pedidoExiste.isEmpty()) {
-			return null;
-		}
-		pedido.setStatus("em_andamento");
-		pedidoDao.save(pedido);
-		return pedido;
-
-	}
 
 	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
 		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
