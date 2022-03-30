@@ -49,7 +49,7 @@ public class PedidoServiceImpl implements IPedidoServices {
 		Pedido pedido = pedidoDao.findById(id).orElse(null);
 		Entregador entregador = entregadorDao.findById(idEntregador).orElse(null);
 
-		if (pedido == null) {
+		if (pedido == null || entregador == null) {
 			return ResponseEntity.notFound().build();
 		}
 
@@ -62,6 +62,8 @@ public class PedidoServiceImpl implements IPedidoServices {
 		} else if (acao.equals("finalizar")) {
 			entregador.setEmEntrega(false);
 			pedido.setStatus("concluido");
+		} else {
+			return ResponseEntity.badRequest().build();
 		}
 
 		entregadorDao.save(entregador);
