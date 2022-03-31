@@ -54,7 +54,7 @@ public class PedidoController {
 		if (pedido != null) {
 			return ResponseEntity.ok(pedido);
 		}
-		return ResponseEntity.status(400).body(new Mensagem(400, "Pedido nao encontrado"));
+		return ResponseEntity.status(404).body(new Mensagem(404, "Pedido nao encontrado"));
 	}
 
 	@PutMapping("/pedidos/{id}")
