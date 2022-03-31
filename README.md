@@ -22,7 +22,7 @@ application.properties
 `DB_PASSWORD`
 
 ## Instalação
-
+Cancel changes
 - Instalação das tecnologias utilizadas
 - Criação do banco de dados a partir de SCHEMA_DB_DESAFIO_ILAB.sql
 contido na pasta raiz do projeto.
@@ -101,7 +101,7 @@ contido na pasta raiz do projeto.
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `status`      | `string` | o tipo de status para filtrar os pedidos que serao recuperados|
+| `status`      | `string` | "em_aberto", "em_andamento" ou "concluido"|
 
 #### **No Body
 
