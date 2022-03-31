@@ -1,7 +1,6 @@
 package com.durodecodar.desafioilab.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.durodecodar.desafioilab.dao.EntregadorDAO;
 import com.durodecodar.desafioilab.dao.PedidoDAO;
+import com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO;
 import com.durodecodar.desafioilab.dto.PedidoDTO;
 import com.durodecodar.desafioilab.model.Entregador;
 import com.durodecodar.desafioilab.model.Pedido;
@@ -40,18 +40,12 @@ public class PedidoServiceImpl implements IPedidoServices {
 		return pedidoDao.buscarPedidoPorId(idPedido);
 	}
 
-	public ResponseEntity<?> listarCoordenadasPedido(Integer id) {
-		return ResponseEntity.ok(pedidoDao.listarCoordenadasPedido(id));
+	public List<CoordenadasPedidoDTO> listarCoordenadasPedido(Integer id) {
+		return pedidoDao.listarCoordenadasPedido(id);
 	}
 
 	@Override
-	public ResponseEntity<?> alterarStatusGenerico(Integer id, String acao, Integer idEntregador) {
-		Pedido pedido = pedidoDao.findById(id).orElse(null);
-		Entregador entregador = entregadorDao.findById(idEntregador).orElse(null);
-
-		if (pedido == null || entregador == null) {
-			return ResponseEntity.notFound().build();
-		}
+	public Pedido alterarStatusGenerico(String acao, Pedido pedido, Entregador entregador) {
 
 		if (acao.equals("atribuir")) {
 			entregador.setEmEntrega(true);
@@ -63,13 +57,13 @@ public class PedidoServiceImpl implements IPedidoServices {
 			entregador.setEmEntrega(false);
 			pedido.setStatus("concluido");
 		} else {
-			return ResponseEntity.badRequest().build();
+			return null;
 		}
 
 		entregadorDao.save(entregador);
 		pedido.setEntregador(entregador);
 		pedidoDao.save(pedido);
-		return ResponseEntity.ok(pedido);
+		return pedido;
 	}
 
 }

@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.durodecodar.desafioilab.dao.CoordenadasPedidoDAO;
+import com.durodecodar.desafioilab.dao.EntregadorDAO;
+import com.durodecodar.desafioilab.dao.PedidoDAO;
 import com.durodecodar.desafioilab.dto.PedidoDTO;
 import com.durodecodar.desafioilab.model.CoordenadasPedido;
 import com.durodecodar.desafioilab.model.Entregador;
+import com.durodecodar.desafioilab.model.Pedido;
 import com.durodecodar.desafioilab.services.IPedidoServices;
 import com.durodecodar.desafioilab.util.Mensagem;
 
@@ -29,6 +32,13 @@ public class PedidoController {
 
 	@Autowired
 	private CoordenadasPedidoDAO dao;
+	
+	@Autowired
+	private PedidoDAO pedidoDao;
+	
+	@Autowired
+	private EntregadorDAO entregadorDao;
+
 
 	@GetMapping("/pedidos")
 	public ResponseEntity<List<PedidoDTO>> listarTodosPedidos(@RequestParam(required = false) String status) {
@@ -50,12 +60,23 @@ public class PedidoController {
 	@PutMapping("/pedidos/{id}")
 	public ResponseEntity<?> alterarStatusGenerico(@PathVariable Integer id, @RequestParam String acao,
 			@RequestParam Integer idEntregador) {
-		return service.alterarStatusGenerico(id, acao, idEntregador);
+		Pedido pedido = pedidoDao.findById(id).orElse(null);
+		Entregador entregador = entregadorDao.findById(idEntregador).orElse(null);
+
+		if (pedido == null || entregador == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		Pedido pedidoAtualizado = service.alterarStatusGenerico(acao, pedido, entregador);
+		if(pedidoAtualizado == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		return ResponseEntity.ok(pedido);
 	}
 
 	@GetMapping("/pedidos/rastrear/{id}")
 	public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer id) {
-		return service.listarCoordenadasPedido(id);
+		return ResponseEntity.ok(service.listarCoordenadasPedido(id));
 	}
 
 	@PostMapping("/pedidos/cadastrar-coordenada")
