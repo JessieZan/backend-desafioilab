@@ -199,7 +199,7 @@ contido na pasta raiz do projeto.
   POST /pedidos/cadastrar-coordenada
 ```
 
-#### Dados Enviados - Query Params - Obrigatorios
+#### Dados Enviados
 
 | Chave   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
