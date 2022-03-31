@@ -168,7 +168,7 @@ contido na pasta raiz do projeto.
 
 #### Dados Recebidos
 
-#### Sucesso (200) ou Erro(404) Not Found
+#### Sucesso (200), Erro(400) Bad Request ou Erro(404) Not Found
 
 #### Exemplo
 ```http
