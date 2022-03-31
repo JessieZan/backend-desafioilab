@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.durodecodar.desafioilab.dto.CoordenadasPedidoDTO;
 import com.durodecodar.desafioilab.dto.PedidoDTO;
+import com.durodecodar.desafioilab.model.Entregador;
+import com.durodecodar.desafioilab.model.Pedido;
 
 public interface IPedidoServices {
 
@@ -14,8 +17,8 @@ public interface IPedidoServices {
 
 	public List<PedidoDTO> listaPedidosEmAberto(String Status);
 	
-	public ResponseEntity<?> alterarStatusGenerico(Integer id, String acao, Integer idEntregador);
+	public Pedido alterarStatusGenerico(String acao, Pedido pedido, Entregador entregador);
 
-	ResponseEntity<?> listarCoordenadasPedido(Integer id);
+	public List<CoordenadasPedidoDTO> listarCoordenadasPedido(Integer id);
 
 }
