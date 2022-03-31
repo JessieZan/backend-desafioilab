@@ -32,13 +32,12 @@ public class PedidoController {
 
 	@Autowired
 	private CoordenadasPedidoDAO dao;
-	
+
 	@Autowired
 	private PedidoDAO pedidoDao;
-	
+
 	@Autowired
 	private EntregadorDAO entregadorDao;
-
 
 	@GetMapping("/pedidos")
 	public ResponseEntity<List<PedidoDTO>> listarTodosPedidos(@RequestParam(required = false) String status) {
@@ -57,29 +56,37 @@ public class PedidoController {
 		return ResponseEntity.status(404).body(new Mensagem(404, "Pedido nao encontrado"));
 	}
 
-	@PutMapping("/pedidos/{id}")
-	public ResponseEntity<?> alterarStatusGenerico(@PathVariable Integer id, @RequestParam String acao,
+	@PutMapping("/pedidos/{idPedido}")
+	public ResponseEntity<?> alterarStatusGenerico(@PathVariable Integer idPedido, @RequestParam String acao,
 			@RequestParam Integer idEntregador) {
-		Pedido pedido = pedidoDao.findById(id).orElse(null);
+		// FIXME Consertar falha grave de segurança
+		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
 		Entregador entregador = entregadorDao.findById(idEntregador).orElse(null);
 
-		if (pedido == null || entregador == null) {
+		if (pedido == null) {
 			return ResponseEntity.notFound().build();
 		}
-		
+
+		if (entregador == null) {
+			return ResponseEntity.notFound().build();
+		}
+
 		Pedido pedidoAtualizado = service.alterarStatusGenerico(acao, pedido, entregador);
-		if(pedidoAtualizado == null) {
+
+		if (pedidoAtualizado == null) {
 			return ResponseEntity.badRequest().build();
 		}
+
 		return ResponseEntity.ok(pedido);
+
 	}
 
-	@GetMapping("/pedidos/rastrear/{id}")
-	public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer id) {
-		return ResponseEntity.ok(service.listarCoordenadasPedido(id));
+	@GetMapping("/pedidos/rastrear/{idPedido}")
+	public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer idPedido) {
+		return ResponseEntity.ok(service.listarCoordenadasPedido(idPedido));
 	}
 
-	@PostMapping("/pedidos/cadastrar-coordenada")
+	@PostMapping("/pedidos/coordenadas")
 	public ResponseEntity<?> cadastrarCoordenada(@RequestBody CoordenadasPedido listaCoordenadas) {
 		dao.save(listaCoordenadas);
 		return ResponseEntity.status(201).build();
