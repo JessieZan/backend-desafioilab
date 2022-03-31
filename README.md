@@ -1,4 +1,6 @@
-# Telemetria de Motoboys
+# EQUIPE 3 - DuroDeCodar - Desafio iLab
+
+## Telemetria de Motoboys
 
 O objetivo do projeto consiste em, pelo ponto de vista do entregador
 apresentar os pedidos que foram feitos e estão em aberto, em formato de lista,
@@ -8,7 +10,23 @@ para acompanhamento da localização em tempo real.
 
 Para ver o Front-end, clique aqui: https://github.com/JessieZan/frontend-desafioilab
 
+## Variáveis de Ambiente
 
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu 
+application.properties
+
+`DB_URL`
+
+`DB_USER`
+
+`DB_PASSWORD`
+
+## Instalação
+
+- Instalação das tecnologias utilizadas
+- Criação do banco de dados a partir de SCHEMA_DB_DESAFIO_ILAB.sql
+contido na pasta raiz do projeto.
+- Rodar projeto como java application
 
 ## Autores
 
@@ -150,7 +168,7 @@ Para ver o Front-end, clique aqui: https://github.com/JessieZan/frontend-desafio
 
 #### Dados Recebidos
 
-#### Sucesso (200) ou Erro(400) Bad Request
+#### Sucesso (200) ou Erro(404) Not Found
 
 #### Exemplo
 ```http
@@ -215,7 +233,7 @@ Para ver o Front-end, clique aqui: https://github.com/JessieZan/frontend-desafio
 
 #### Dados Recebidos
 
-#### Sucesso (200) Ok ou Erro(400) Bad Request
+#### Sucesso (200) Ok ou Erro(404) Not Found
 
 #### Exemplo
 ```http
@@ -243,13 +261,4 @@ Para ver o Front-end, clique aqui: https://github.com/JessieZan/frontend-desafio
 ]    
 ```
 
-## Variáveis de Ambiente
 
-Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu 
-application.properties
-
-`DB_URL`
-
-`DB_USERNAME`
-
-`DB_PASSWORD`
