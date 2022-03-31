@@ -26,7 +26,7 @@ public class TokenUtils {
 
 	private static final String HEADER = "Authorization";
 	private static final String PREFIX = "Bearer ";
-	private static final long EXPIRATION = DIAS / 48;
+	private static final long EXPIRATION = DIAS * 1;
 	private static final String SECRET_KEY = System.getenv("SECRET_KEY");
 	private static final String EMISSOR = "FoodLovers";
 
