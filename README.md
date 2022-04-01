@@ -154,7 +154,7 @@ contido na pasta raiz do projeto.
 ### Altera status do pedido de acordo com parametros de query informados
 
 ```http
-  PUT /pedidos/{id}?acao={acao}&idEntregador={idEntregador}
+  PUT /pedidos/{id}?acao={acao}
 ```
 
 #### Dados Enviados - Query Params - Obrigatorios
@@ -162,7 +162,6 @@ contido na pasta raiz do projeto.
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `acao`      | `string` | "atribuir", "finalizar" ou "cancelar"|
-| `idEntregador` | `int` | id do entregador logado |
 
 #### **No Body
 
