@@ -10,6 +10,8 @@ para acompanhamento da localização em tempo real.
 
 Para ver o Front-end, clique aqui: https://github.com/JessieZan/frontend-desafioilab
 
+Link do Trello: https://trello.com/b/GYiTf2Hv/quadro-projeto-d1-ilab
+
 ## Variáveis de Ambiente
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu 
