@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,24 +51,23 @@ public class PedidoController {
 	@GetMapping("/pedidos/{idPedido}")
 	public ResponseEntity<?> buscarPedidoPorId(@PathVariable Integer idPedido) {
 		PedidoDTO pedido = service.buscarPedidoPorId(idPedido);
+
 		if (pedido != null) {
 			return ResponseEntity.ok(pedido);
 		}
 		return ResponseEntity.status(404).body(new Mensagem(404, "Pedido nao encontrado"));
 	}
 
-	@PutMapping("/pedidos/{idPedido}")
-	public ResponseEntity<?> alterarStatusGenerico(@PathVariable Integer idPedido, @RequestParam String acao,
-			@RequestParam Integer idEntregador) {
-		// FIXME Consertar falha grave de segurança
-		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
-		Entregador entregador = entregadorDao.findById(idEntregador).orElse(null);
+	@PutMapping("/pedidos/{id}")
+	public ResponseEntity<?> alterarStatusGenerico(@PathVariable Integer id, @RequestParam String acao) {
+		String [] infosToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString().split(",");
+		Integer idEntregadoLogado = Integer.parseInt(infosToken[1]);
+   
+		Pedido pedido = pedidoDao.findById(id).orElse(null);
+		Entregador entregador = entregadorDao.findById(idEntregadoLogado).orElse(null);
+		
+		if (pedido == null || entregador == null) {
 
-		if (pedido == null) {
-			return ResponseEntity.notFound().build();
-		}
-
-		if (entregador == null) {
 			return ResponseEntity.notFound().build();
 		}
 
