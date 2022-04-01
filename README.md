@@ -203,7 +203,7 @@ contido na pasta raiz do projeto.
 
 | Chave   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `idPedido`      | `string` | id do pedido em andamento|
+| `idPedido`      | `int` | id do pedido em andamento|
 | `idEntregador` | `int` | id do entregador logado |
 | `timestamp` | `string` | timestamp do momento da captura |
 | `coordenada` | `string` | coordenada de geolocalização |
