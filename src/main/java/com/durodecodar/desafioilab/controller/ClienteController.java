@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.durodecodar.desafioilab.dto.EntregadorDTO;
-import com.durodecodar.desafioilab.services.IEntregadorService;
+import com.durodecodar.desafioilab.dto.ClienteDTO;
+import com.durodecodar.desafioilab.services.IClienteService;
 
 @RestController
 @CrossOrigin("*")
-public class EntregadorController {
-
+public class ClienteController {
 	@Autowired
-	private IEntregadorService service;
+	private IClienteService service;
 
-	@GetMapping("/entregadores")
-	public ResponseEntity<List<EntregadorDTO>> retornarTodos() {
+	@GetMapping("/clientes")
+	public ResponseEntity<List<ClienteDTO>> recuperarTodos() {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
 
-	@GetMapping("/entregadores/{idEntregador}")
-	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer idEntregador) {
-		EntregadorDTO res = service.recuperarPeloId(idEntregador);
+	@GetMapping("/clientes/{idCliente}")
+	public ResponseEntity<ClienteDTO> recuperarPeloId(@PathVariable Integer idCliente) {
+		ClienteDTO res = service.recuperarPeloId(idCliente);
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}
 		return ResponseEntity.notFound().build();
 	}
+
 }

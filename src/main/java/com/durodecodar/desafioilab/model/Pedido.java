@@ -1,6 +1,6 @@
 package com.durodecodar.desafioilab.model;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,53 +16,75 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "pedido")
 public class Pedido {
-	
+
 	@Id
-	@Column(name="id",  nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "data_criacao")
-	private Timestamp dataCriacao;
-	
+	private LocalDateTime dataCriacao;
+
 	@Column(name = "valor_total", nullable = false)
 	private Integer valorTotal;
-	
+
 	@Column(name = "status", nullable = false, length = 10)
 	private String status;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "id_entregador")
-//	@JsonIgnoreProperties("listaDePedidos")
-//	private Entregador entregador;
-	
+
+	@Column(name = "endereco_entrega", nullable = false, columnDefinition = "TEXT")
+	private String enderecoEntrega;
+
+	@ManyToOne
+	@JoinColumn(name = "id_entregador")
+	@JsonIgnoreProperties("listaDePedidos")
+	private Entregador entregador;
+
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
-	@JsonIgnoreProperties("listaDePedidosCliente")
 	private Cliente cliente;
 
+	private String coordenadasPedido;
+
+	public Pedido(String coordenadasPedido) {
+		this.coordenadasPedido = coordenadasPedido;
+	}
 
 	public Pedido() {
 		super();
 	}
-	
 
+	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status, String enderecoEntrega) {
 
-//	public Pedido(Timestamp dataCriacao, Integer valorTotal, String status) {
-//		super();
-//		this.dataCriacao = dataCriacao;
-//		this.valorTotal = valorTotal;
-//		this.status = status;
-//	}
+		super();
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
+	}
 
+	public Pedido(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, String enderecoEntrega,
+			Integer numeroEnt, String nomeEnt, String emailEnt, String telefoneEnt, String senhaEnt,
+			boolean emEntrega) {
 
+		super();
+		this.id = id;
+		this.dataCriacao = dataCriacao;
+		this.valorTotal = valorTotal;
+		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
+		this.entregador = new Entregador();
+		this.entregador.setId(numeroEnt);
+		this.entregador.setNome(nomeEnt);
+		this.entregador.setEmail(emailEnt);
+		this.entregador.setTelefone(telefoneEnt);
+		this.entregador.setSenha(senhaEnt);
+		this.entregador.setEmEntrega(emEntrega);
+
+	}
 
 	public Cliente getCliente() {
 		return cliente;
-	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Integer getId() {
@@ -73,11 +95,11 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Timestamp getDataCriacao() {
+	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(Timestamp dataCriacao) {
+	public void setDataCriacao(LocalDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
@@ -97,14 +119,20 @@ public class Pedido {
 		this.status = status;
 	}
 
-//	public Entregador getEntregador() {
-//		return entregador;
-//	}
-//
-//	public void setEntregador(Entregador entregador) {
-//		this.entregador = entregador;
-//	}
+	public Entregador getEntregador() {
+		return entregador;
+	}
 
-	
-	
+	public void setEntregador(Entregador entregador) {
+		this.entregador = entregador;
+	}
+
+	public String getEnderecoEntrega() {
+		return enderecoEntrega;
+	}
+
+	public void setEnderecoEntrega(String enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
+	}
+
 }
