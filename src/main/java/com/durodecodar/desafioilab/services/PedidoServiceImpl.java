@@ -46,6 +46,7 @@ public class PedidoServiceImpl implements IPedidoServices {
 
 	@Override
 	public Pedido alterarStatusGenerico(String acao, Pedido pedido, Entregador entregador) {
+		Entregador entregadorGeral = entregadorDao.findById(1).orElse(null);
 
 		if (acao.equals("atribuir")) {
 			entregador.setEmEntrega(true);
@@ -61,7 +62,13 @@ public class PedidoServiceImpl implements IPedidoServices {
 		}
 
 		entregadorDao.save(entregador);
-		pedido.setEntregador(entregador);
+
+		if (acao.equals("cancelar")) {
+			pedido.setEntregador(entregadorGeral);
+		} else {
+			pedido.setEntregador(entregador);
+		}
+
 		pedidoDao.save(pedido);
 		return pedido;
 	}
