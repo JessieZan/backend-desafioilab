@@ -22,10 +22,6 @@ public class Cliente {
 	@Column(name = "senha", nullable = false, columnDefinition = "TEXT")
 	private String senha;
 
-//	@OneToMany(mappedBy = "cliente")
-//	@JsonIgnoreProperties("cliente")
-//	private List<Pedido>listaDePedidosCliente;
-
 	public Integer getId() {
 		return id;
 	}
@@ -60,13 +56,5 @@ public class Cliente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-//	public List<Pedido> getListaDePedidosCliente() {
-//		return listaDePedidosCliente;
-//	}
-//
-//	public void setListaDePedidosCliente(List<Pedido> listaDePedidosCliente) {
-//		this.listaDePedidosCliente = listaDePedidosCliente;
-//	}
 
 }

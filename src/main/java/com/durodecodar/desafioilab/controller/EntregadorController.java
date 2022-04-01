@@ -24,9 +24,9 @@ public class EntregadorController {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
 
-	@GetMapping("/entregadores/{id}")
-	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer id) {
-		EntregadorDTO res = service.recuperarPeloId(id);
+	@GetMapping("/entregadores/{idEntregador}")
+	public ResponseEntity<EntregadorDTO> recuperarPeloId(@PathVariable Integer idEntregador) {
+		EntregadorDTO res = service.recuperarPeloId(idEntregador);
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}

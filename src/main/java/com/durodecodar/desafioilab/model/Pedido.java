@@ -31,10 +31,8 @@ public class Pedido {
 	@Column(name = "status", nullable = false, length = 10)
 	private String status;
 
-	
 	@Column(name = "endereco_entrega", nullable = false, columnDefinition = "TEXT")
 	private String enderecoEntrega;
-	
 
 	@ManyToOne
 	@JoinColumn(name = "id_entregador")
@@ -53,13 +51,9 @@ public class Pedido {
 
 	public Pedido() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-
-	
-	
-	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status,String enderecoEntrega) {
+	public Pedido(LocalDateTime dataCriacao, Integer valorTotal, String status, String enderecoEntrega) {
 
 		super();
 		this.dataCriacao = dataCriacao;
@@ -68,16 +62,9 @@ public class Pedido {
 		this.enderecoEntrega = enderecoEntrega;
 	}
 
-
-
-
-	public Pedido(
-			Integer id, LocalDateTime dataCriacao, 
-			Integer valorTotal, String status, 
-			String enderecoEntrega,
-			Integer numeroEnt , String nomeEnt, 
-			String emailEnt, String telefoneEnt, 
-			String senhaEnt, boolean emEntrega ) {
+	public Pedido(Integer id, LocalDateTime dataCriacao, Integer valorTotal, String status, String enderecoEntrega,
+			Integer numeroEnt, String nomeEnt, String emailEnt, String telefoneEnt, String senhaEnt,
+			boolean emEntrega) {
 
 		super();
 		this.id = id;
@@ -99,14 +86,6 @@ public class Pedido {
 		return cliente;
 
 	}
-
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
 
 	public Integer getId() {
 		return id;
@@ -147,12 +126,13 @@ public class Pedido {
 	public void setEntregador(Entregador entregador) {
 		this.entregador = entregador;
 	}
-	
+
 	public String getEnderecoEntrega() {
-			return enderecoEntrega;
+		return enderecoEntrega;
 	}
+
 	public void setEnderecoEntrega(String enderecoEntrega) {
 		this.enderecoEntrega = enderecoEntrega;
-}
+	}
 
 }

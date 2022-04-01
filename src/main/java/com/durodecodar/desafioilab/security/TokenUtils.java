@@ -26,8 +26,8 @@ public class TokenUtils {
 
 	private static final String HEADER = "Authorization";
 	private static final String PREFIX = "Bearer ";
-	private static final long EXPIRATION = DIAS * 1; // 15 minutos
-	private static final String SECRET_KEY = "$3cr37k3y3q03D3s4f103n7r3g4d0r3S";
+	private static final long EXPIRATION = DIAS * 1;
+	private static final String SECRET_KEY = System.getenv("SECRET_KEY");
 	private static final String EMISSOR = "FoodLovers";
 
 	public static String createToken(Entregador entregador) {
@@ -35,14 +35,13 @@ public class TokenUtils {
 		Key secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
 		String token = Jwts.builder()
-				.setSubject(entregador.getNome()+',' + entregador.getId() +',')
+				.setSubject(entregador.getNome()+',' + entregador.getId())
 				.setIssuer(EMISSOR)
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
 				.signWith(secretKey, SignatureAlgorithm.HS256)
 				.compact();
 		
 		return PREFIX + token;
-		
 	}
 
 	private static boolean isExpirationValid(Date expiration) {

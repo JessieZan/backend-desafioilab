@@ -23,29 +23,13 @@ public class ClienteController {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
 
-	@GetMapping("/clientes/{id}")
-	public ResponseEntity<ClienteDTO> recuperarPeloId(@PathVariable Integer id) {
-		ClienteDTO res = service.recuperarPeloId(id);
+	@GetMapping("/clientes/{idCliente}")
+	public ResponseEntity<ClienteDTO> recuperarPeloId(@PathVariable Integer idCliente) {
+		ClienteDTO res = service.recuperarPeloId(idCliente);
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}
 		return ResponseEntity.notFound().build();
 	}
 
-//	@Autowired
-//	private ClienteDAO dao;
-//	
-//	@GetMapping("/clientes")
-//	public List<ClienteDTO> recuperarTodos() {
-//		 return (List<ClienteDTO>) dao.recuperarTodos();
-//	}
-//	
-//	@GetMapping("/clientes/{id}")
-//	public ClienteDTO recuperarPeloId(Integer id) {
-//		Cliente res = dao.findById(id).orElse(null);
-//		if (res != null) {
-//			return ClienteDTO.fromCliente(res);
-//		}
-//		return null;
-//	}
 }

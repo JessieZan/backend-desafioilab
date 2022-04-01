@@ -9,7 +9,7 @@ public class Encrypt {
 
 	public static String encrypt(String original) throws Exception {
 
-		String strMinhaChave = "ch@v3cr1pt0gr@f@d@+32b1t$d3s@f10";
+		String strMinhaChave = System.getenv("PRIVATE_KEY");
 
 		Key minhaChave = new SecretKeySpec(strMinhaChave.getBytes(), "AES");
 

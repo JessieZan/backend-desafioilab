@@ -33,13 +33,12 @@ public class PedidoController {
 
 	@Autowired
 	private CoordenadasPedidoDAO dao;
-	
+
 	@Autowired
 	private PedidoDAO pedidoDao;
-	
+
 	@Autowired
 	private EntregadorDAO entregadorDao;
-
 
 	@GetMapping("/pedidos")
 	public ResponseEntity<List<PedidoDTO>> listarTodosPedidos(@RequestParam(required = false) String status) {
@@ -68,22 +67,26 @@ public class PedidoController {
 		Entregador entregador = entregadorDao.findById(idEntregadoLogado).orElse(null);
 		
 		if (pedido == null || entregador == null) {
+
 			return ResponseEntity.notFound().build();
 		}
-		
+
 		Pedido pedidoAtualizado = service.alterarStatusGenerico(acao, pedido, entregador);
-		if(pedidoAtualizado == null) {
+
+		if (pedidoAtualizado == null) {
 			return ResponseEntity.badRequest().build();
 		}
+
 		return ResponseEntity.ok(pedido);
+
 	}
 
-	@GetMapping("/pedidos/rastrear/{id}")
-	public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer id) {
-		return ResponseEntity.ok(service.listarCoordenadasPedido(id));
+	@GetMapping("/pedidos/rastrear/{idPedido}")
+	public ResponseEntity<?> listarCoordenadasPedido(@PathVariable Integer idPedido) {
+		return ResponseEntity.ok(service.listarCoordenadasPedido(idPedido));
 	}
 
-	@PostMapping("/pedidos/cadastrar-coordenada")
+	@PostMapping("/pedidos/coordenadas")
 	public ResponseEntity<?> cadastrarCoordenada(@RequestBody CoordenadasPedido listaCoordenadas) {
 		dao.save(listaCoordenadas);
 		return ResponseEntity.status(201).build();
